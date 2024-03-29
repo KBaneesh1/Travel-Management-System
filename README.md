@@ -36,6 +36,7 @@ This is a Travel Management System built using Java and Spring Boot. It allows u
 2. **Run the repository:**
 
    ```bash
+    cd Travel-itenerary
     ./gradlew bootRun
     ```
     #### Note:- The installation will only happen till 80%. If it reaches this point for more than 10s , consider the installation to be done and proceed.
