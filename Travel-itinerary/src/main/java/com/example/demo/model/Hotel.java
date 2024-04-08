@@ -3,7 +3,7 @@ import java.util.List;
 
 import java.util.ArrayList;
 
-import com.example.demo.model.RoomType;
+//import com.example.demo.model.RoomType;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -14,17 +14,18 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name="hotels")
-public class Hotel {
+public class Hotel{
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
     
-    @Column(name = "name")
+    @Column(name = "hotel_name")
     private String name;
+
+    @Column(name="address")
     private String address;
-    private int numberOfRooms;
-    private List<RoomType> rooms = new ArrayList<RoomType>();
+    //private List<RoomType> rooms = new ArrayList<RoomType>();
 
     public Long getId() {
         return id;
@@ -50,21 +51,13 @@ public class Hotel {
         this.address = address;
     }
 
-    public int getNumberOfRooms() {
-        return numberOfRooms;
-    }
-
-    public void setNumberOfRooms(int numberOfRooms) {
-        this.numberOfRooms = numberOfRooms;
-    }
-
-    public List<RoomType> getRooms() {
+    /* public List<RoomType> getRooms() {
         return rooms;
     }
 
     public void setRooms(List<RoomType> rooms) {
         this.rooms = rooms;
-    }
+    } */
 
 
     

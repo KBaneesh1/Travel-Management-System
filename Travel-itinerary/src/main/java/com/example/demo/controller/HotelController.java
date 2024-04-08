@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.demo.model.Hotel;
 import com.example.demo.services.HotelService;
 
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,6 +23,26 @@ public class HotelController {
     public HotelController(HotelService hotelService) {
         super();
         this.hotelService = hotelService;
+    }
+
+    @GetMapping("/hotels")
+    public String listHotels(Model model) {
+        model.addAttribute("hotels", hotelService.getAllHotels());
+        return "hotels";
+    }
+    
+
+    @GetMapping("/hotels/new")
+    public String addHotel(Model model){
+        Hotel newHotel = new Hotel();
+        model.addAttribute("hotel", newHotel);
+        return "add_hotel";
+    }
+    
+    @PostMapping("/hotels/new")
+    public String saveMovie(@ModelAttribute("hotel") Hotel hotel) {
+        hotelService.saveHotel(hotel);
+        return "redirect:/hotels";
     }
 
 }
