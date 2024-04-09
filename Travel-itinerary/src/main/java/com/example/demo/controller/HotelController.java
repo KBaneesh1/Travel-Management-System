@@ -35,6 +35,7 @@ public class HotelController {
     @GetMapping("/hotels")
     public String listHotels(Model model) {
         model.addAttribute("hotels", hotelService.getAllHotels());
+        //model.addAttribute("roomDetails", hotelRoomInventoryService.getAllRoomDetails());
         return "hotels";
     }
     

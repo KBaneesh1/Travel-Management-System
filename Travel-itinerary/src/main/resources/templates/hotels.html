@@ -20,7 +20,18 @@
 </head>
 <body>
     <h2>Hotel Information</h2>
-    <table>
+    <div class="hotelInfo">
+        <div class="cards-container" th:each="hotel:${hotels}">
+            <div class="card" style="border:black solid;">
+                <p th:text="${hotel.name}"></p>
+                <p th:text="${hotel.address}"></p>
+                <br/>
+                <!-- <p th:text="${roomDetails.name}"></p>
+                <br/> -->
+            </div>
+        </div>
+    </div>
+    <!-- <table>
         <thead>
             <tr>
                 <th>Hotel Name</th>
@@ -33,6 +44,6 @@
                 <td th:text="${hotel.address}"></td>
             </tr>
         </tbody>
-    </table>
+    </table> -->
 </body>
 </html>

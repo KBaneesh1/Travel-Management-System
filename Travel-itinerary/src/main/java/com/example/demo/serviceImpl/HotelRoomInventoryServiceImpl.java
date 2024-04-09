@@ -1,5 +1,7 @@
 package com.example.demo.serviceImpl;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.example.demo.model.HotelRoomInventory;
@@ -14,6 +16,10 @@ public class HotelRoomInventoryServiceImpl implements HotelRoomInventoryService{
     public HotelRoomInventoryServiceImpl(HotelRoomInventoryRepository hotelRoomInventoryRepository){
         super();
         this.hotelRoomInventoryRepository = hotelRoomInventoryRepository;
+    }
+
+    public List<HotelRoomInventory> getAllRoomDetails(){
+        return hotelRoomInventoryRepository.findAll();
     }
 
     public HotelRoomInventory saveRoomDetails(HotelRoomInventory roomDetails){
