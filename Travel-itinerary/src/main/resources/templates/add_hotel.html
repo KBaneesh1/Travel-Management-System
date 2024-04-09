@@ -13,7 +13,29 @@
         <label for="address">Address:</label>
         <input th:field="${hotel.address}" type="text" id="address" name="address" required>
         <br>
-        <!-- Additional fields can be added here if needed -->
+        <label for="numberOfACRooms">Number of AC Rooms:</label>
+        <input th:field="${ACRoomDetails.numberOfRooms}" type="number" id="numberOfACRooms" name="numberOfACRooms" required>
+        <br>
+        <label for="ACAmenities">Amenities:</label>
+        <textarea th:field="${ACRoomDetails.amenities}"
+            type="text" id="ACAmenities" name="ACAmenities" required></textarea>
+        <br>
+        <label for="ACpricePerNight">Price per Night(INR):</label>
+        <input th:field="${ACRoomDetails.pricePerNight}"
+            type="number" id="ACpricePerNight" name="ACpricePerNight" step="0.01" required>
+        <br>
+        <br>
+        <label for="numberOfNonACRooms">Number of Non-AC Rooms:</label>
+        <input th:field="${NonACRoomDetails.numberOfRooms}" type="number" id="numberOfNonACRooms" name="numberOfNonACRooms" required>
+        <br>
+        <label for="NonACamenities">Amenities:</label>
+        <textarea th:field="${NonACRoomDetails.amenities}"
+            type="text" id="NonACamenities" name="NonACamenities" required></textarea>
+        <br>
+        <label for="NonACpricePerNight">Price per Night(INR):</label>
+        <input th:field="${NonACRoomDetails.pricePerNight}"
+            type="number" id="NonACpricePerNight" name="NonACpricePerNight" step="0.01" required>
+        <br>
         <br>
         <input type="submit" value="Save">
     </form>

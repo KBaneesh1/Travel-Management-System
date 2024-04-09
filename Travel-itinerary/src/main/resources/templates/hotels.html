@@ -29,8 +29,8 @@
         </thead>
         <tbody>
             <tr th:each="hotel : ${hotels}">
-                <td th:text="${hotel.hotelName}"></td>
-                <td th:text="${hotel.location}"></td>
+                <td th:text="${hotel.name}"></td>
+                <td th:text="${hotel.address}"></td>
             </tr>
         </tbody>
     </table>
