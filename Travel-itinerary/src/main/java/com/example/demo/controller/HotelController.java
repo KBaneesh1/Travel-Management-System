@@ -12,6 +12,7 @@ import com.example.demo.model.HotelRoomInventory;
 import com.example.demo.services.HotelRoomInventoryService;
 import com.example.demo.services.HotelService;
 import com.example.demo.services.RoomTypeService;
+import com.example.demo.model.RoomDetails;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -41,47 +42,36 @@ public class HotelController {
     @GetMapping("/hotels/new")
     public String addHotel(Model model){
         Hotel newHotel = new Hotel();
-        HotelRoomInventory newACRoomDetails = new HotelRoomInventory();
-        HotelRoomInventory newNonACRoomDetails = new HotelRoomInventory();
-        //Long acId = RoomTypeService.findRoomIdByRoomType("AC");
-        //Long nonAcId = RoomTypeService.findRoomIdByRoomType("Non-AC");
+        
+        RoomDetails roomDetails = new RoomDetails();
 
-        newACRoomDetails.setRoomTypeId(1L); 
-        newNonACRoomDetails.setRoomTypeId(2L);
-        //System.out.println("ca room");
-        //System.out.println(newACRoomDetails);
-        //System.out.println("\n nonac room");
-        //System.out.println(newNonACRoomDetails);
         model.addAttribute("hotel", newHotel);
-        model.addAttribute("ACRoomDetails", newACRoomDetails);
-        model.addAttribute("NonACRoomDetails", newNonACRoomDetails);
+        model.addAttribute("roomDetails", roomDetails);
         return "add_hotel";
     }
     
     @PostMapping("/hotels/new")
     public String saveHotel(@ModelAttribute("hotel") Hotel hotel, 
-                            @ModelAttribute("ACRoomDetails") HotelRoomInventory ACRoomDetails, 
-                            @ModelAttribute("NonACRoomDetails") HotelRoomInventory NonACRoomDetails) {
-        
-        // System.out.println("AC rooms details");
-        // System.out.println(ACRoomDetails.getAmenities());
-        // System.out.println(ACRoomDetails.getNumberOfRooms());
-        // System.out.println(ACRoomDetails.getPricePerNight());
-
-        // System.out.println("NonAC rooms details");
-        // System.out.println(NonACRoomDetails.getAmenities());
-        // System.out.println(NonACRoomDetails.getNumberOfRooms());
-        // System.out.println(NonACRoomDetails.getPricePerNight());
+                            @ModelAttribute("roomDetails") RoomDetails roomDetails) {
 
         hotelService.saveHotel(hotel);
         
-        ACRoomDetails.setHotelId(hotel.getId());
-        ACRoomDetails.setRoomTypeId(1L);
-        hotelRoomInventoryService.saveRoomDetails(ACRoomDetails);
+        HotelRoomInventory newACRoomDetails = new HotelRoomInventory();
+        HotelRoomInventory newNonACRoomDetails = new HotelRoomInventory();
 
-        NonACRoomDetails.setHotelId(hotel.getId());
-        NonACRoomDetails.setRoomTypeId(2L);
-        hotelRoomInventoryService.saveRoomDetails(NonACRoomDetails);
+        newACRoomDetails.setHotelId(hotel.getId());
+        newACRoomDetails.setRoomTypeId(1L);
+        newACRoomDetails.setAmenities(roomDetails.getACAmenities());
+        newACRoomDetails.setPricePerNight(roomDetails.getACpricePerNight());
+        newACRoomDetails.setNumberOfRooms(roomDetails.getNumACRooms());
+        hotelRoomInventoryService.saveRoomDetails(newACRoomDetails);
+
+        newNonACRoomDetails.setHotelId(hotel.getId());
+        newNonACRoomDetails.setRoomTypeId(2L);
+        newNonACRoomDetails.setAmenities(roomDetails.getNonACAmenities());
+        newNonACRoomDetails.setPricePerNight(roomDetails.getNonACpricePerNight());
+        newNonACRoomDetails.setNumberOfRooms(roomDetails.getNumNonACRooms());
+        hotelRoomInventoryService.saveRoomDetails(newNonACRoomDetails);
 
         return "redirect:/hotels";
     }

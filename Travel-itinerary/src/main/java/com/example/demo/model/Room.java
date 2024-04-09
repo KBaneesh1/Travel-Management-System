@@ -9,7 +9,7 @@ import jakarta.persistence.GenerationType;
 
 @Entity
 @Table(name = "room_types")
-public class RoomType {
+public class Room {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -35,20 +35,3 @@ public class RoomType {
 
 
 }
-
-//Constructor  for creating a new room object with all fields set
-/* 
-class ACRoom extends RoomType{
-    
-    public ACRoom(){
-        super();
-    }
-}
-
-class NonACRoom extends RoomType{
-    
-    public NonACRoom(){
-        super();
-    }
-
-} */
