@@ -17,6 +17,7 @@ public class User {
     private String username;
     private String email;
     private String password;
+    private String userType;
 
     public Long getId() {
         return id;
@@ -49,6 +50,14 @@ public class User {
     public void setPassword(String passw) {
         this.password = passw;
     }
-    // Getters and setters
+
+    public String getUserType() {
+        return userType;
+    }
+    public void setUserType(String utype) {
+        this.userType = utype;
+    }
+
+    
     // Constructors
 }

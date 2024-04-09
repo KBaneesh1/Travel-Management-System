@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 import com.example.demo.model.User;
 import com.example.demo.repository.UserRepository;
+import com.example.demo.model.UserType;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class UserController {
@@ -27,51 +29,79 @@ public class UserController {
         model.addAttribute("successMessage", "User registered successfully!");
         return "register";
     }
-}
 
-// import org.springframework.stereotype.Controller;
-// import org.springframework.web.bind.annotation.GetMapping;
-// import org.springframework.web.bind.annotation.PostMapping;
-// import org.springframework.web.bind.annotation.RequestParam;
-// import org.springframework.ui.Model;
+
 
 // @Controller
 // public class UserController {
+    @GetMapping("/login")
+    public String showLoginForm() {
+        return "login";
+    }
 
-//     @GetMapping("/login")
-//     public String showLoginForm() {
-//         return "login";
-//     }
+    
+    // @GetMapping("/admin/home")
+    // public String adminHome() {
+    //     return "admin_home";
+    // }
+    
+    // @GetMapping("/service/home")
+    // public String serviceHome() {
+    //     return "service_home";
+    // }
+    
+    // @GetMapping("/user/home")
+    // public String userHome() {
+        //     return "home";
+    @GetMapping("/admin/login")
+    public String showAdminLoginForm() {
+        return "admin_login";
+    }
 
-//     @PostMapping("/login")
-//     public String login(@RequestParam("username") String username, @RequestParam("password") String password, Model model) {
-//         // Add your authentication logic here
-//         // For demonstration purposes, let's assume a simple hardcoded authentication
-//         if ("admin".equals(username) && "password".equals(password)) {
-//             return "redirect:/home"; // Redirect to home page upon successful login
-//         } else {
-//             model.addAttribute("error", "Invalid username or password");
-//             return "login"; // Return to login page with error message
-//         }
-//     }
+    @PostMapping("/admin/login")
+    public String adminLsogin(@RequestParam("username") String username, @RequestParam("password") String password, Model model) {
+        User user = userRepository.findByUsername(username);
+        if (user != null && user.getPassword().equals(password) && user.getUserType().equals("ADMIN")) {
+            return "admin_home";
+        } else {
+            return "error_page";
+        }
+    }
 
-//     @GetMapping("/home")
-//     public String home() {
-//         return "home";
-//     }
+    @PostMapping("/provider/login")
+    public String providerLogin(@RequestParam("username") String username, @RequestParam("password") String password, Model model) {
+        User user = userRepository.findByUsername(username);
+        if (user != null && user.getPassword().equals(password) && user.getUserType().equals("PROVIDER")) {
+            return "provider_home";
+        } else {
+            return "error_page";
+        }
+    }
 
-//     @GetMapping("/register")
-//     public String showRegistrationForm(Model model) {
-//         model.addAttribute("user", new User());
-//         return "register";
-//     }
 
-//     @PostMapping("/register")
-//     public String registerUser(@ModelAttribute("user") User user, Model model) {
-//         // Add your user registration logic here
-//         // For demonstration purposes, let's assume we just print the user details
-//         System.out.println("User registered: " + user.getUsername() + ", " + user.getEmail());
-//         model.addAttribute("successMessage", "User registered successfully!");
-//         return "register";
-//     }
-// }
+    @PostMapping("/user/login")
+    public String userLogin(@RequestParam("username") String username, @RequestParam("password") String password, Model model) {
+        User user = userRepository.findByUsername(username);
+        if (user != null && user.getPassword().equals(password) && user.getUserType().equals("USER")) {
+            return "home";
+        } else {
+            return "error_page";
+        }
+    }
+
+    @GetMapping("/admin/home")
+    public String showAdminHomePage() {
+        return "admin_home";
+    }
+
+    @GetMapping("/provider/login")
+    public String showServiceProviderLoginForm() {
+        return "provider_login";
+    }
+
+    @GetMapping("/user/login")
+    public String showNormalUserLoginForm() {
+        return "user_login";
+    }
+
+}

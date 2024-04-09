@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
@@ -20,5 +20,30 @@
         </div>
         <div th:if="${error}" style="color: red;">[[${error}]]</div>
     </form>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <script>
+        function redirectToLogin(role) {
+            if (role === 'admin') {
+                window.location.href = '/admin/login';
+            } else if (role === 'service_provider') {
+                window.location.href = '/provider/login';
+            } else if (role === 'user') {
+                window.location.href = '/user/login';
+            }
+        }
+    </script>
+</head>
+<body>
+    <h2>Login</h2>
+    <button onclick="redirectToLogin('admin')">Admin</button>
+    <button onclick="redirectToLogin('service_provider')">Service Provider</button>
+    <button onclick="redirectToLogin('user')">Normal User</button>
 </body>
 </html>
