@@ -18,6 +18,9 @@ public class Bus implements Transport {
     private byte[] vehicleImage;
 
     // Implement Transport interface methods
+    public Long getId(){
+        return id;
+    }
     @Override
     public String getVehicleName() {
         return vehicleName;

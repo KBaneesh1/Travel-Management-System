@@ -5,7 +5,7 @@ import com.example.demo.model.Car;
 
 import java.util.List;
 
-public interface TransportService {
+public abstract interface TransportService {
     List<Car> getAllCars();
     List<Bus> getAllBuses();
     void addCar(Car car);
