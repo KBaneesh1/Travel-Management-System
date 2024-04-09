@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transport Selection</title>
+    <style>
+        .container {
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+        
+        .card {
+            width: 300px;
+            height: 200px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 10px;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .card:hover {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            transform: translateY(-5px);
+        }
+        
+        .attributes {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            padding: 20px;
+            overflow-y: auto;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        .card:hover .attributes {
+            display: block;
+        }
+        
+        .attribute {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div th:each="car : ${cars}" class="card">
+            <h2>Car</h2>
+            <div class="attributes">
+                <!-- <img th:if="${car.vehicleImage != null and car.vehicleImage.length > 0}" th:src="|data:image/jpeg;base64,${#strings.bytesToBase64(car.vehicleImage)}|" alt="Car Image"> -->
+                <p class="attribute" th:text="'Vehicle Name: ' + ${car.vehicleName}"></p>
+                <p class="attribute" th:text="'Price Per Day: $' + ${car.pricePerDay}"></p>
+                <p class="attribute" th:text="'Capacity: ' + ${car.capacity}"></p>
+                <p class="attribute" th:text="'Driver Info: ' + ${car.driverInfo}"></p>
+                <!-- <a class="edit-link" th:href="@{'/transport/edit-car/' + ${car.id}}">Edit</a> -->
+               
+            </div>
+        </div>
+        <div th:each="bus : ${buses}" class="card">
+            <h2>Bus</h2>
+            <div class="attributes">
+                <!-- <img th:src="|data:image/jpeg;base64,${#strings.bytesToBase64(bus.vehicleImage)}|" alt="Bus Image"> -->
+                <p class="attribute" th:text="'Vehicle Name: ' + ${bus.vehicleName}"></p>
+                <p class="attribute" th:text="'Price Per Day: $' + ${bus.pricePerDay}"></p>
+                <p class="attribute" th:text="'Capacity: ' + ${bus.capacity}"></p>
+                <p class="attribute" th:text="'Driver Info: ' + ${bus.driverInfo}"></p>      
+                <!-- <a class="edit-link" th:href="@{'/transport/edit-bus/' + ${bus.id}}">Edit</a> -->
+            </div>
+        </div>
+    </div>
+    <div style="text-align: center; margin-top: 20px;">
+        <a href="/transport/addCar" style="margin-right: 20px;">Add Car</a>
+        <a href="/transport/addBus">Add Bus</a>
+    </div>
+</body>
+</html>
