@@ -10,6 +10,101 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.demo.model.ACRoom;
+import com.example.demo.model.Hotel;
+import com.example.demo.model.HotelRoomDetails;
+import com.example.demo.model.NonACRoom;
+import com.example.demo.services.HotelService;
+import com.example.demo.services.RoomService;
+
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
+
+@Controller
+public class HotelController {
+
+    private HotelService hotelService;
+    private RoomService roomService;
+
+    public HotelController(HotelService hotelService, RoomService roomService) {
+        
+        super();
+        this.hotelService = hotelService;
+        this.roomService = roomService;
+
+    }
+
+    @GetMapping("/hotels")
+    public String listHotels(Model model) {
+        
+        List<HotelRoomDetails> allDetails = new ArrayList<HotelRoomDetails>(); 
+        List<Hotel> hotelInfo = hotelService.getAllHotels();
+
+        for (Hotel hotel : hotelInfo) {
+            
+            HotelRoomDetails temp = new HotelRoomDetails();
+            temp.setHotel(hotel);
+            temp.setAcRoom(roomService.getACRoomByHotelId(hotel.getId()));
+            temp.setNonACRoom(roomService.getNonACRoomByHotelId(hotel.getId()));
+            
+            allDetails.add(temp);
+
+        }
+
+        model.addAttribute("allHotelDetails", allDetails);
+        
+        return "hotels";
+    }
+    
+
+    @GetMapping("/hotels/new")
+    public String addHotel(Model model){
+        
+        HotelRoomDetails hotelDetails = new HotelRoomDetails();
+        hotelDetails.setHotel(new Hotel());
+        hotelDetails.setAcRoom(new ACRoom());
+        hotelDetails.setNonACRoom(new NonACRoom());
+
+        model.addAttribute("hotelDetails", hotelDetails);
+        return "add_hotel";
+    }
+    
+    @PostMapping("/hotels/new")
+    public String saveHotel(@ModelAttribute("hotelDetails") HotelRoomDetails hotelDetails) {
+        
+        Hotel hotel = hotelDetails.getHotel();
+        hotelService.saveHotel(hotel);
+
+        ACRoom acRoom = hotelDetails.getAcRoom();
+        NonACRoom nonacRoom = hotelDetails.getNonACRoom();
+
+        acRoom.setHotelId(hotel.getId());
+        nonacRoom.setHotelId(hotel.getId());
+
+        roomService.saveACRoom(acRoom);
+        roomService.saveNonACRoom(nonacRoom);
+        
+        return "redirect:/hotels";
+    }
+
+}
+
+
+
+
+/* package com.example.demo.controller;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
+
 import com.example.demo.model.Hotel;
 import com.example.demo.model.HotelRoomInventory;
 import com.example.demo.services.HotelRoomInventoryService;
@@ -106,3 +201,4 @@ public class HotelController {
     }
 
 }
+ */

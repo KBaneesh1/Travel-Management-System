@@ -28,17 +28,16 @@
     <div class="hotelInfo">
         <div class="cards-container" th:each="hotelDetails:${allHotelDetails}">
             <div class="card" style="border:black solid;">
-                <p th:text="${hotelDetails.hotelName}"></p>
-                <p th:text="${hotelDetails.address}"></p>
-                <p th:text="${hotelDetails.numACRooms}"></p>
-                <p th:text="${hotelDetails.ACAmenities}"></p>
-                <p th:text="${hotelDetails.ACpricePerNight}"></p>
-                <p th:text="${hotelDetails.numNonACRooms}"></p>
-                <p th:text="${hotelDetails.NonACAmenities}"></p>
-                <p th:text="${hotelDetails.NonACpricePerNight}"></p>
+                
+                <p th:text="${hotelDetails.hotel.name}"></p>
+                <p th:text="${hotelDetails.hotel.address}"></p>
+                <p th:text="${hotelDetails.acRoom.numRooms}"></p>
+                <p th:text="${hotelDetails.acRoom.PricePerNight}"></p>
+                <p th:text="${hotelDetails.acRoom.amenities}"></p>
+                <p th:text="${hotelDetails.nonACRoom.numRooms}"></p>
+                <p th:text="${hotelDetails.nonACRoom.amenities}"></p>
+                <p th:text="${hotelDetails.nonACRoom.PricePerNight}"></p>
                 <br/>
-                <!-- <p th:text="${roomDetails.name}"></p>
-                <br/> -->
             </div>
             <br/>
         </div>
