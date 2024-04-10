@@ -12,6 +12,8 @@ import com.example.demo.services.HotelRoomInventoryService;
 public class HotelRoomInventoryServiceImpl implements HotelRoomInventoryService{
     
     private HotelRoomInventoryRepository hotelRoomInventoryRepository;
+
+    private RoomTypeServiceImpl roomTypeServiceImpl;
     
     public HotelRoomInventoryServiceImpl(HotelRoomInventoryRepository hotelRoomInventoryRepository){
         super();
@@ -20,6 +22,10 @@ public class HotelRoomInventoryServiceImpl implements HotelRoomInventoryService{
 
     public List<HotelRoomInventory> getAllRoomDetails(){
         return hotelRoomInventoryRepository.findAll();
+    }
+
+    public List<HotelRoomInventory> getDetailsByHotelId(Long hotelId){
+        return hotelRoomInventoryRepository.findDetailsByHotelId(hotelId);
     }
 
     public HotelRoomInventory saveRoomDetails(HotelRoomInventory roomDetails){
@@ -31,4 +37,16 @@ public class HotelRoomInventoryServiceImpl implements HotelRoomInventoryService{
         }
         return res;
     }
+
+    public HotelRoomInventory getRoomTypeDetails(List<HotelRoomInventory> roomDetails, Long roomTypeId){
+        for(HotelRoomInventory hri:roomDetails){
+            if (hri.getRoomTypeId().equals(roomTypeId)){
+                return hri;
+            }
+        }
+
+        return null;
+    }
 }
+
+//for each hotel, get its details and room details into a single object

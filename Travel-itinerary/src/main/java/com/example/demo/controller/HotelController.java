@@ -1,5 +1,8 @@
 package com.example.demo.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,7 +37,32 @@ public class HotelController {
 
     @GetMapping("/hotels")
     public String listHotels(Model model) {
-        model.addAttribute("hotels", hotelService.getAllHotels());
+        List<RoomDetails> allDetails = new ArrayList<RoomDetails>(); 
+
+        List<Hotel> hotelInfo = hotelService.getAllHotels();
+
+        for (Hotel hotel : hotelInfo) {
+            RoomDetails temp = new RoomDetails();
+            List<HotelRoomInventory> roomDetails = hotelRoomInventoryService.getDetailsByHotelId(hotel.getId());
+
+            temp.setHotelName(hotel.getName());
+            temp.setAddress(hotel.getAddress());
+            
+            HotelRoomInventory ACRoomDetails = hotelRoomInventoryService.getRoomTypeDetails(roomDetails, 1L); //1L for AC rooms
+            HotelRoomInventory NonACRoomDetails = hotelRoomInventoryService.getRoomTypeDetails(roomDetails, 2L); //1L for AC rooms
+
+            temp.setNumACRooms(ACRoomDetails.getNumberOfRooms());
+            temp.setACAmenities(ACRoomDetails.getAmenities());
+            temp.setACpricePerNight(ACRoomDetails.getPricePerNight());
+
+            temp.setNumNonACRooms(NonACRoomDetails.getNumberOfRooms());
+            temp.setNonACAmenities(NonACRoomDetails.getAmenities());
+            temp.setNonACpricePerNight(NonACRoomDetails.getPricePerNight());
+
+            allDetails.add(temp);
+        }
+
+        model.addAttribute("allHotelDetails", allDetails);
         //model.addAttribute("roomDetails", hotelRoomInventoryService.getAllRoomDetails());
         return "hotels";
     }

@@ -2,6 +2,8 @@ package com.example.demo.model;
 
 public class RoomDetails{
     
+    private String hotelName, address;
+
     private int numACRooms;
     private String ACAmenities;
     private double ACpricePerNight;
@@ -11,6 +13,22 @@ public class RoomDetails{
     private double NonACpricePerNight;
     
     public RoomDetails(){}
+
+    public String getHotelName() {
+        return hotelName;
+    }
+
+    public void setHotelName(String hotelName) {
+        this.hotelName = hotelName;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
     
     public int getNumACRooms() {
         return numACRooms;
