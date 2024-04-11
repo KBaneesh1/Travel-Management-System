@@ -88,6 +88,46 @@ public class HotelController {
         return "redirect:/hotels";
     }
 
+    @GetMapping("/hotels/edit/{id}")
+    public String editHotel(@PathVariable("id") Long id, Model model) {
+        
+        HotelRoomDetails  hotelDetails = new HotelRoomDetails();
+
+        Hotel hotel = hotelService.getHotelById(id);
+        ACRoom acRoom = roomService.getACRoomByHotelId(id);
+        NonACRoom nonACRoom = roomService.getNonACRoomByHotelId(id);
+
+        hotelDetails.setHotel(hotel);
+        hotelDetails.setAcRoom(acRoom);
+        hotelDetails.setNonACRoom(nonACRoom);
+
+        model.addAttribute("hotelDetails", hotelDetails);
+        return "edit_hotel_details";
+    }
+
+    @PostMapping("/hotels/edit/{id}")
+    public String updateHotel(@PathVariable("id") Long id, @ModelAttribute("hotelDetails") HotelRoomDetails hotelDetails, Model model) {
+        
+        ACRoom oldAcRoom = roomService.getACRoomByHotelId(id);
+        NonACRoom oldNonACRoom = roomService.getNonACRoomByHotelId(id);
+
+        ACRoom tempac = hotelDetails.getAcRoom();
+        NonACRoom tempnac = hotelDetails.getNonACRoom();
+        
+        oldAcRoom.setAmenities(tempac.getAmenities());
+        oldAcRoom.setNumRooms(tempac.getNumRooms());
+        oldAcRoom.setPricePerNight(tempac.getPricePerNight());
+
+        oldNonACRoom.setAmenities(tempnac.getAmenities());
+        oldNonACRoom.setNumRooms(tempnac.getNumRooms());
+        oldNonACRoom.setPricePerNight(tempnac.getPricePerNight());
+       
+        roomService.saveACRoom(oldAcRoom);
+        roomService.saveNonACRoom(oldNonACRoom);
+        
+        return "redirect:/hotels";
+    }
+
 }
 
 

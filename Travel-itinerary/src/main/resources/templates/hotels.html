@@ -38,6 +38,11 @@
                 <p th:text="${hotelDetails.nonACRoom.amenities}"></p>
                 <p th:text="${hotelDetails.nonACRoom.PricePerNight}"></p>
                 <br/>
+                <div >
+                    <a th:href="@{/hotels/edit/{id}(id=${hotelDetails.hotel.id})}">
+                        Edit
+                    </a>
+                </div>
             </div>
             <br/>
         </div>
