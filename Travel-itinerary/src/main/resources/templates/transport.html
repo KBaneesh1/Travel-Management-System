@@ -57,28 +57,28 @@
 <body>
     <div class="container">
         <div th:each="car : ${cars}" class="card">
-            <h2>Car</h2>
+            <h2 th:text = "${car.vehicleName}"></h2>
             <div class="attributes">
                 <!-- <img th:if="${car.vehicleImage != null and car.vehicleImage.length > 0}" th:src="|data:image/jpeg;base64,${#strings.bytesToBase64(car.vehicleImage)}|" alt="Car Image"> -->
-                <p class="attribute" th:text="'Vehicle Name: ' + ${car.vehicleName}"></p>
+                <!-- <p class="attribute" th:text="'Vehicle Name: ' + ${car.vehicleName}"></p> -->
                 <p class="attribute" th:text="'Price Per Day: $' + ${car.pricePerDay}"></p>
                 <p class="attribute" th:text="'Capacity: ' + ${car.capacity}"></p>
                 <p class="attribute" th:text="'Driver Info: ' + ${car.driverInfo}"></p>
                 <a th:href="@{/transport/editCar/{id}(id=${car.id})}">Edit</a> |
-                <a th:href="@{/transport/editCar/{id}(id=${car.id})}" onclick="return confirm('Are you sure you want to delete this car?')">Delete</a>
+                <a th:href="@{/transport/deleteCar/{id}(id=${car.id})}" onclick="return confirm('Are you sure you want to delete this car?')">Delete</a>
                
             </div>
         </div>
         <div th:each="bus : ${buses}" class="card">
-            <h2>Bus</h2>
+            <h2 th:text = "${bus.vehicleName}">Bus</h2>
             <div class="attributes">
                 <!-- <img th:src="|data:image/jpeg;base64,${#strings.bytesToBase64(bus.vehicleImage)}|" alt="Bus Image"> -->
-                <p class="attribute" th:text="'Vehicle Name: ' + ${bus.vehicleName}"></p>
+                <!-- <p class="attribute" th:text="'Vehicle Name: ' + ${bus.vehicleName}"></p> -->
                 <p class="attribute" th:text="'Price Per Day: $' + ${bus.pricePerDay}"></p>
                 <p class="attribute" th:text="'Capacity: ' + ${bus.capacity}"></p>
                 <p class="attribute" th:text="'Driver Info: ' + ${bus.driverInfo}"></p>      
                 <a th:href="@{/transport/editBus/{id}(id=${bus.id})}">Edit</a> |
-                <a th:href="@{/transport/editBus/{id}(id=${bus.id})}" onclick="return confirm('Are you sure you want to delete this bus?')">Delete</a>
+                <a th:href="@{/transport/deleteBus/{id}(id=${bus.id})}" onclick="return confirm('Are you sure you want to delete this bus?')">Delete</a>
             </div>
         </div>
     </div>

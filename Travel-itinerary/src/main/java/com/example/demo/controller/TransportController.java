@@ -7,12 +7,8 @@ import com.example.demo.service.TransportService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.bind.annotation.RequestParam;
 import java.io.IOException;
 import java.util.List;
 
@@ -81,6 +77,40 @@ public class TransportController {
         transportService.addBus(bus);
         return "redirect:/transport";
     }
-    
+    @GetMapping("/editCar/{id}")
+    public String editCar(@PathVariable Long id, Model model) {
+        Car car = transportService.getCarById(id);
+        model.addAttribute("car", car);
+        System.out.println("in get edit car");
+        return "editCar";
+    }
+    @PostMapping("/editCar/{id}")
+    public String updateCar(@PathVariable("id") Long id, @ModelAttribute Car updatedCar) {
+        System.out.println("done dedwed");
+        transportService.updateCar(id, updatedCar);
+        return "redirect:/transport";
+    }
+
+    @GetMapping("/editBus/{id}")
+    public String editBus(@PathVariable Long id, Model model) {
+        Bus bus = transportService.getBusById(id);
+        model.addAttribute("bus", bus);
+        return "editBus";
+    }
+    @PostMapping("/editBus/{id}")
+    public String updateBus(@PathVariable("id") Long id, @ModelAttribute Bus updatedBus) {
+        transportService.updateBus(id, updatedBus);
+        return "redirect:/transport";
+    }
+    @GetMapping("/deleteCar/{id}")
+    public String deleteCar(@PathVariable Long id) {
+        transportService.deleteCar(id);
+        return "redirect:/transport";
+    }
+    @GetMapping("/deleteBus/{id}")
+    public String deleteMovie(@PathVariable Long id) {
+        transportService.deleteBus(id);
+        return "redirect:/transport";
+    }
 
 }
