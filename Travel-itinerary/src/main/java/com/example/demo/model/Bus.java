@@ -15,6 +15,7 @@ public class Bus implements Transport {
     private Float pricePerDay;
     private Integer capacity;
     private String driverInfo;
+    public Integer availableVehicle;
     private byte[] vehicleImage;
 
     // Implement Transport interface methods
@@ -60,7 +61,14 @@ public class Bus implements Transport {
     public void setDriverInfo(String driverInfo) {
         this.driverInfo = driverInfo;
     }
-
+    @Override
+    public Integer getAvailableVehicle(){
+        return availableVehicle;
+    }
+    @Override
+    public void setAvailableVehicle(Integer availableVehicle){
+        this.availableVehicle = availableVehicle;
+    }
     @Override
     public byte[] getVehicleImage() {
         return vehicleImage;

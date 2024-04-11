@@ -16,6 +16,9 @@ public interface Transport {
     String getDriverInfo();
     void setDriverInfo(String driverInfo);
 
+    Integer getAvailableVehicle();
+    void setAvailableVehicle(Integer available_vehicles);
+
     byte[] getVehicleImage();
     void setVehicleImage(byte[] vehicleImage);
 }

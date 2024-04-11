@@ -69,6 +69,7 @@ public class TransportServiceImpl implements TransportService {
             existingcar.setCapacity(updatedcar.getCapacity());
             existingcar.setPricePerDay(updatedcar.getPricePerDay());
             existingcar.setDriverInfo(updatedcar.getDriverInfo());
+            existingcar.setAvailableVehicle(updatedcar.getAvailableVehicle());
             // existingcar.setAverageRating((updatedcar.getAverageRating()+existingMovie.getAverageRating())/2);
             System.out.println(existingcar);
             return carRepository.save(existingcar);
@@ -87,6 +88,7 @@ public class TransportServiceImpl implements TransportService {
             existingbus.setCapacity(updatedbus.getCapacity());
             existingbus.setPricePerDay(updatedbus.getPricePerDay());
             existingbus.setDriverInfo(updatedbus.getDriverInfo());
+            existingbus.setAvailableVehicle(updatedbus.getAvailableVehicle());
             // existingbus.setAverageRating((updatedbus.getAverageRating()+existingMovie.getAverageRating())/2);
             return busRepository.save(existingbus);
         }
