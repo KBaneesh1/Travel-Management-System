@@ -3,11 +3,11 @@ package com.example.demo.service;
 import com.example.demo.model.Bus;
 import com.example.demo.model.Car;
 
-import java.util.List;
+import java.util.*;
 
 public abstract interface TransportService {
-    List<Car> getAllCars();
-    List<Bus> getAllBuses();
+    List<Car> getAllCars(Date userStartDate , Date userEndDate);
+    List<Bus> getAllBuses(Date userStartDate , Date userEndDate);
     void addCar(Car car);
     void addBus(Bus bus);
     Car getCarById(Long id);
@@ -18,4 +18,9 @@ public abstract interface TransportService {
 
     Car updateCar(Long id , Car car); 
     Bus updateBus(Long id , Bus bus); 
+    // void addToCart(String vehicleType, Long id);
+    
+    // List<Map<String, Long>> getCart();
+    
+    // void clearCart();
 }

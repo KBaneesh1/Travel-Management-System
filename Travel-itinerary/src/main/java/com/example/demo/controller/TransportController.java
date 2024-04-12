@@ -10,18 +10,25 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
-import java.util.List;
+import java.util.*;
 
 @Controller
 @RequestMapping("/transport")
 public class TransportController {
+
+    // private List<Map<String, Long>> cart = new ArrayList<>();
 
     @Autowired
     private TransportService transportService;
 
     @GetMapping
     public String showAllTransports(Model model) {
-        List<Car> cars = transportService.getAllCars();
+        Calendar cal1 = Calendar.getInstance();
+        cal1.set(2024, 04, 01);
+        Calendar cal2 = Calendar.getInstance();
+        cal2.set(2024, 04, 10);
+        
+        List<Car> cars = transportService.getAllCars(cal1 , cal2);
         List<Bus> buses = transportService.getAllBuses();
         model.addAttribute("cars", cars);
         model.addAttribute("buses", buses);

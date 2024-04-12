@@ -7,12 +7,13 @@ import com.example.demo.repository.CarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+// import java.util.Optional;
 
 @Service
 public class TransportServiceImpl implements TransportService {
 
+    // private List<Map<String, Long>> cart = new ArrayList<>();
     @Autowired
     private CarRepository carRepository;
 
@@ -20,13 +21,13 @@ public class TransportServiceImpl implements TransportService {
     private BusRepository busRepository;
 
     @Override
-    public List<Car> getAllCars() {
-        return carRepository.findAll();
+    public List<Car> getAllCars(Date userStartDate , Date userEndDate) {
+        return carRepository.findAvailableCars(userStartDate,userEndDate);
     }
-
+    
     @Override
-    public List<Bus> getAllBuses() {
-        return busRepository.findAll();
+    public List<Bus> getAllBuses(Date userStartDate , Date userEndDate) {
+        return busRepository.findAvailableBuses(userStartDate,userEndDate);
     }
 
     @Override
@@ -69,7 +70,7 @@ public class TransportServiceImpl implements TransportService {
             existingcar.setCapacity(updatedcar.getCapacity());
             existingcar.setPricePerDay(updatedcar.getPricePerDay());
             existingcar.setDriverInfo(updatedcar.getDriverInfo());
-            existingcar.setAvailableVehicle(updatedcar.getAvailableVehicle());
+            existingcar.setLocation(updatedcar.getLocation());
             // existingcar.setAverageRating((updatedcar.getAverageRating()+existingMovie.getAverageRating())/2);
             System.out.println(existingcar);
             return carRepository.save(existingcar);
@@ -88,12 +89,31 @@ public class TransportServiceImpl implements TransportService {
             existingbus.setCapacity(updatedbus.getCapacity());
             existingbus.setPricePerDay(updatedbus.getPricePerDay());
             existingbus.setDriverInfo(updatedbus.getDriverInfo());
-            existingbus.setAvailableVehicle(updatedbus.getAvailableVehicle());
+            existingbus.setLocation(updatedbus.getLocation());
             // existingbus.setAverageRating((updatedbus.getAverageRating()+existingMovie.getAverageRating())/2);
             return busRepository.save(existingbus);
         }
         return null;
     }
+
+
+    // @Override
+    // public void addToCart(String vehicleType, Long id) {
+    //     Map<String, Long> item = new HashMap<>();
+    //     item.put("type", vehicleType);
+    //     item.put("id", id);
+    //     cart.add(item);
+    // }
+
+    // @Override
+    // public List<Map<String, Long>> getCart() {
+    //     return cart;
+    // }
+
+    // @Override
+    // public void clearCart() {
+    //     cart.clear();
+    // }
 
 }
 

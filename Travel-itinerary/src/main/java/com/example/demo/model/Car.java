@@ -97,7 +97,7 @@ public class Car implements Transport {
     private Float pricePerDay;
     private Integer capacity;
     private String driverInfo;
-    private Integer availableVehicle;
+    private String location;
     private byte[] vehicleImage;
 
     // Implement Transport interface methods
@@ -122,8 +122,14 @@ public class Car implements Transport {
     public void setPricePerDay(Float pricePerDay) {
         this.pricePerDay = pricePerDay;
     }
-
- 
+    @Override
+    public String getLocation(){
+        return location;
+    }
+    @Override
+    public void setLocation(String location){
+        this.location = location;
+    }
     @Override
     public void setCapacity(Integer capacity) {
         this.capacity = capacity;
@@ -141,14 +147,7 @@ public class Car implements Transport {
     public void setDriverInfo(String driverInfo) {
         this.driverInfo = driverInfo;
     }
-    @Override
-    public Integer getAvailableVehicle(){
-        return availableVehicle;
-    }
-    @Override
-    public void setAvailableVehicle(Integer availableVehicle){
-        this.availableVehicle = availableVehicle;
-    }
+    
     @Override
     public byte[] getVehicleImage() {
         return vehicleImage;
