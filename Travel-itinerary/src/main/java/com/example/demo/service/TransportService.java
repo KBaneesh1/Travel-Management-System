@@ -1,13 +1,14 @@
 package com.example.demo.service;
 
+import com.example.demo.model.BaseLocation;
 import com.example.demo.model.Bus;
 import com.example.demo.model.Car;
-
+import com.example.demo.model.BaseLocation;
 import java.util.*;
-
+import java.time.*;
 public abstract interface TransportService {
-    List<Car> getAllCars(Date userStartDate , Date userEndDate);
-    List<Bus> getAllBuses(Date userStartDate , Date userEndDate);
+    List<Car> getAllCars(LocalDate userStartDate , LocalDate userEndDate,BaseLocation baseloc);
+    List<Bus> getAllBuses(LocalDate userStartDate , LocalDate userEndDate,BaseLocation baseloc);
     void addCar(Car car);
     void addBus(Bus bus);
     Car getCarById(Long id);

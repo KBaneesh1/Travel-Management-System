@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.model.BaseLocation;
 import com.example.demo.model.Bus;
 import com.example.demo.model.Car;
 
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.util.*;
-
+import java.time.*;
 @Controller
 @RequestMapping("/transport")
 public class TransportController {
@@ -23,13 +24,11 @@ public class TransportController {
 
     @GetMapping
     public String showAllTransports(Model model) {
-        Calendar cal1 = Calendar.getInstance();
-        cal1.set(2024, 04, 01);
-        Calendar cal2 = Calendar.getInstance();
-        cal2.set(2024, 04, 10);
-        
-        List<Car> cars = transportService.getAllCars(cal1 , cal2);
-        List<Bus> buses = transportService.getAllBuses();
+        LocalDate l1 = LocalDate.of(2024,1,15);
+        LocalDate l2 = LocalDate.of(2024,8,15);
+        BaseLocation b = new BaseLocation(0, "Bengaluru", "A very big city of all the gardens and garbages");
+        List<Car> cars = transportService.getAllCars(l1 , l2,b);
+        List<Bus> buses = transportService.getAllBuses(l1,l2,b);
         model.addAttribute("cars", cars);
         model.addAttribute("buses", buses);
         return "transport";

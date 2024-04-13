@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.example.demo.model.BaseLocation;
 import com.example.demo.model.Bus;
 import com.example.demo.model.Car;
 import com.example.demo.repository.BusRepository;
@@ -7,6 +8,7 @@ import com.example.demo.repository.CarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.*;
 // import java.util.Optional;
 
@@ -21,13 +23,13 @@ public class TransportServiceImpl implements TransportService {
     private BusRepository busRepository;
 
     @Override
-    public List<Car> getAllCars(Date userStartDate , Date userEndDate) {
-        return carRepository.findAvailableCars(userStartDate,userEndDate);
+    public List<Car> getAllCars(LocalDate userStartDate , LocalDate userEndDate,BaseLocation baseLocation) {
+        return carRepository.findAvailableCars(userStartDate,userEndDate,baseLocation);
     }
-    
+
     @Override
-    public List<Bus> getAllBuses(Date userStartDate , Date userEndDate) {
-        return busRepository.findAvailableBuses(userStartDate,userEndDate);
+    public List<Bus> getAllBuses(LocalDate userStartDate , LocalDate userEndDate,BaseLocation baseLocation) {
+        return busRepository.findAvailableBuses(userStartDate,userEndDate,baseLocation);
     }
 
     @Override
