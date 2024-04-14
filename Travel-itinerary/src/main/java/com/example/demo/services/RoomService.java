@@ -13,5 +13,9 @@ public interface RoomService {
     NonACRoom saveNonACRoom(NonACRoom nonACRoom);
     ACRoom getACRoomByHotelId(Long hotelId);
     NonACRoom getNonACRoomByHotelId(Long hotelId);
+    
+    //To check availability of number of rooms and dates
+    // Boolean isAvailableAC(Long hotelId, String type);
+    // Boolean isAvailableNonAC(Long hotelId, String type);
 }
 
