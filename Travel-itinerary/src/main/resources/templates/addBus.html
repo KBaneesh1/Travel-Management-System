@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Bus</title>
+    <style>
+        /* Add your CSS styling here */
+    </style>
+</head>
+<body>
+    <h1>Add Bus</h1>
+    <form action="/transport/addBus" method="post" enctype="multipart/form-data">
+        <label for="vehicleName">Vehicle Name:</label><br>
+        <input type="text" id="vehicleName" name="vehicleName"><br>
+        <label for="pricePerDay">Price Per Day:</label><br>
+        <input type="number" id="pricePerDay" name="pricePerDay"><br>
+        <label for="capacity">Capacity:</label><br>
+        <input type="number" id="capacity" name="capacity"><br>
+        <label for="driverInfo">Driver Info:</label><br>
+        <input type="text" id="driverInfo" name="driverInfo"><br>
+        <label for="location">Base location:</label><br>
+        <input type="text" id="location" name="location"><br>
+        <label for="vehicleImage">Vehicle Image:</label><br>
+        <input type="file" id="vehicleImage" name="file"><br>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

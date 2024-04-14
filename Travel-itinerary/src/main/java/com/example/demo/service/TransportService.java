@@ -1,0 +1,27 @@
+package com.example.demo.service;
+
+import com.example.demo.model.BaseLocation;
+import com.example.demo.model.Bus;
+import com.example.demo.model.Car;
+import com.example.demo.model.BaseLocation;
+import java.util.*;
+import java.time.*;
+public abstract interface TransportService {
+    List<Car> getAllCars(LocalDate userStartDate , LocalDate userEndDate,BaseLocation baseloc);
+    List<Bus> getAllBuses(LocalDate userStartDate , LocalDate userEndDate,BaseLocation baseloc);
+    void addCar(Car car);
+    void addBus(Bus bus);
+    Car getCarById(Long id);
+    Bus getBusById(Long id);
+    
+    void deleteCar(Long id);
+    void deleteBus(Long id);
+
+    Car updateCar(Long id , Car car); 
+    Bus updateBus(Long id , Bus bus); 
+    void addToCart(String vehicleType, Long id);
+    
+    List<Map<String, Long>> getCart();
+    
+    void clearCart();
+}
