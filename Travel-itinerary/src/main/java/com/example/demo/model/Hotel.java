@@ -27,6 +27,9 @@ public class Hotel{
     private String address;
     //private List<RoomType> rooms = new ArrayList<RoomType>();
 
+    @Column(name="base_location")
+    private String baseLocation;
+
     public Long getId() {
         return id;
     }
@@ -50,6 +53,16 @@ public class Hotel{
     public void setAddress(String address) {
         this.address = address;
     }
+
+    public String getBaseLocation() {
+        return baseLocation;
+    }
+
+    public void setBaseLocation(String baseLocation) {
+        this.baseLocation = baseLocation;
+    }
+
+    
 
     /* public List<RoomType> getRooms() {
         return rooms;
