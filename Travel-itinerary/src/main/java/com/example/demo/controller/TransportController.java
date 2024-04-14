@@ -118,5 +118,18 @@ public class TransportController {
         transportService.deleteBus(id);
         return "redirect:/transport";
     }
+    @PostMapping("/addToCart")
+    @ResponseBody
+    public String addToCart(@RequestParam("vehicleType") String vehicleType, @RequestParam("id") Long id) {
+        Long itemId = Long.valueOf(id);
+        transportService.addToCart(vehicleType, itemId);
+        return "Item added to cart!";
+    }
+
+    @GetMapping("/viewCart")
+    @ResponseBody
+    public List<Map<String, Long>> viewCart() {
+        return transportService.getCart();
+    }
 
 }

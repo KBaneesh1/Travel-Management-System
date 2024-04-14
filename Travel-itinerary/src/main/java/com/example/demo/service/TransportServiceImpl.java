@@ -15,7 +15,7 @@ import java.util.*;
 @Service
 public class TransportServiceImpl implements TransportService {
 
-    // private List<Map<String, Long>> cart = new ArrayList<>();
+    private List<Map<String, Long>> cart = new ArrayList<>();
     @Autowired
     private CarRepository carRepository;
 
@@ -99,23 +99,23 @@ public class TransportServiceImpl implements TransportService {
     }
 
 
-    // @Override
-    // public void addToCart(String vehicleType, Long id) {
-    //     Map<String, Long> item = new HashMap<>();
-    //     item.put("type", vehicleType);
-    //     item.put("id", id);
-    //     cart.add(item);
-    // }
+    @Override
+    public void addToCart(String vehicleType, Long id) {
+        Map<String, Long> item = new HashMap<>();
+        item.put("type", vehicleType);
+        item.put("id", id);
+        cart.add(item);
+    }
 
-    // @Override
-    // public List<Map<String, Long>> getCart() {
-    //     return cart;
-    // }
+    @Override
+    public List<Map<String, Long>> getCart() {
+        return cart;
+    }
 
-    // @Override
-    // public void clearCart() {
-    //     cart.clear();
-    // }
+    @Override
+    public void clearCart() {
+        cart.clear();
+    }
 
 }
 

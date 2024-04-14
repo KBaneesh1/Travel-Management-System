@@ -19,9 +19,9 @@ public abstract interface TransportService {
 
     Car updateCar(Long id , Car car); 
     Bus updateBus(Long id , Bus bus); 
-    // void addToCart(String vehicleType, Long id);
+    void addToCart(String vehicleType, Long id);
     
-    // List<Map<String, Long>> getCart();
+    List<Map<String, Long>> getCart();
     
-    // void clearCart();
+    void clearCart();
 }
