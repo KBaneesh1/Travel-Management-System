@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Hotel Information Form</title>
+</head>
+<body>
+    <h2>Hotel Information Form</h2>
+    <form th:action="@{/hotels/new}" method="post">
+        <label for="name">Hotel Name:</label>
+        <input th:field="${hotelDetails.hotel.name}" type="text" id="name" name="name" required>
+        <br>
+        <label for="address">Address:</label>
+        <input th:field="${hotelDetails.hotel.address}" type="text" id="address" name="address" required>
+        <br>
+        <p th:text="${hotelDetails.acRoom.roomType}"></p>
+        <label for="numACRooms">Number of AC Rooms:</label>
+        <input th:field="${hotelDetails.acRoom.numRooms}" type="number" id="numACRooms" name="numACRooms" required>
+        <br>
+        <label for="ACAmenities">Amenities:</label>
+        <textarea th:field="${hotelDetails.acRoom.amenities}"
+            type="text" id="ACAmenities" name="ACAmenities" required></textarea>
+        <br>
+        <label for="ACpricePerNight">Price per Night(INR):</label>
+        <input th:field="${hotelDetails.acRoom.PricePerNight}"
+            type="number" id="ACpricePerNight" name="ACpricePerNight" step="0.1" required>
+        <br>
+        <br>
+        <p th:text="${hotelDetails.nonACRoom.roomType}"></p>
+        <label for="numNonACRooms">Number of Non-AC Rooms:</label>
+        <input th:field="${hotelDetails.nonACRoom.numRooms}" type="number" id="numNonACRooms" name="numNonACRooms" required>
+        <br>
+        <label for="NonACAmenities">Amenities:</label>
+        <textarea th:field="${hotelDetails.nonACRoom.amenities}"
+            type="text" id="NonACAmenities" name="NonACAmenities" required></textarea>
+        <br>
+        <label for="NonACpricePerNight">Price per Night(INR):</label>
+        <input th:field="${hotelDetails.nonACRoom.PricePerNight}"
+            type="number" id="NonACpricePerNight" name="NonACpricePerNight" step="0.1" required>
+        <br>
+        <br>
+        <input type="submit" value="Save">
+    </form>
+</body>
+</html>
