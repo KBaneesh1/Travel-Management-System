@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Package</title>
+    <script>
+        function addHotelSelection() {
+            var select = document.createElement("select");
+            select.name = "hotels";
+            select.innerHTML = '<option value="Hotel A">Hotel A</option>' +
+                               '<option value="Hotel B">Hotel B</option>' +
+                               '<option value="Hotel C">Hotel C</option>'; // Add more hotel options as needed
+            document.getElementById("hotelSelection").appendChild(select);
+        }
+    </script>
+</head>
+<body>
+    <h1>Create Package</h1>
+    
+    <form action="/create-package" method="post">
+        <h2>Select Hotels:</h2>
+        <div id="hotelSelection">
+            <!-- Initially, display one hotel selection -->
+            <select name="hotels">
+                <option value="Hotel A">Hotel A</option>
+                <option value="Hotel B">Hotel B</option>
+                <option value="Hotel C">Hotel C</option> <!-- Add more hotel options as needed -->
+            </select>
+        </div>
+        <button type="button" onclick="addHotelSelection()">Add Hotel</button>
+        
+        <h2>Select Transport:</h2>
+        <select name="transport">
+            <option value="Flight XYZ">Flight XYZ</option>
+            <option value="Train ABC">Train ABC</option>
+            <!-- Add more transport options as needed -->
+        </select>
+        
+        <button type="submit">Create Package</button>
+    </form>
+</body>
+</html>
