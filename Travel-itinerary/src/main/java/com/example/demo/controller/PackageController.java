@@ -1,13 +1,13 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.BaseLocation;
 import com.example.demo.model.Bus;
 import com.example.demo.model.Car;
 import com.example.demo.model.Hotel;
 import com.example.demo.model.Package;
 import com.example.demo.model.HotelRoomDetails;
+import com.example.demo.services.HotelService;
+import com.example.demo.services.RoomService;
 
-import com.example.demo.service.TransportService;
 import com.example.demo.serviceImpl.CarService;
 import com.example.demo.serviceImpl.BusService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,8 +56,8 @@ public class PackageController {
             allDetails.add(temp);
         }
 
-        List<Car> cars = CarService.getVehicleByBaseLocation(baseLocation);
-        List<Bus> buses = BusService.getVehicleByBaseLocation(baseLocation);
+        List<Car> cars = carService.getVehicleByBaseLocation(baseLocation);
+        List<Bus> buses = busService.getVehicleByBaseLocation(baseLocation);
         model.addAttribute("allHotelDetails", allDetails);
         // will this work:
         model.addAttribute("allCarDetails", cars);

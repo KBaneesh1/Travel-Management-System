@@ -13,12 +13,15 @@ public class Package {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long package_id;
+    private String packageName;
+    private String description;
     
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "pack_id")
     private ArrayList<Hotel> hotels;
-
     private Transport transport;
+    private double price;
+    
 
     private Package() {
         // hotels = new ArrayList<>();
@@ -50,9 +53,11 @@ public class Package {
 
 
     public static class Builder {
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        private Long package_id;
         private String packageName;
         private String description;
-        private List<Hotel> hotels = new ArrayList<>();
+        private ArrayList<Hotel> hotels = new ArrayList<>();
         private Transport transport;
         private double price;
 
