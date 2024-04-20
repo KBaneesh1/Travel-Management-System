@@ -5,10 +5,11 @@ import com.example.demo.model.Bus;
 import com.example.demo.model.Car;
 import com.example.demo.model.Hotel;
 import com.example.demo.model.Package;
+import com.example.demo.model.HotelRoomDetails;
 
 import com.example.demo.service.TransportService;
-import com.example.demo.service.CarService;
-import com.example.demo.service.BusService;
+import com.example.demo.serviceImpl.CarService;
+import com.example.demo.serviceImpl.BusService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -74,7 +75,7 @@ public class PackageController {
     }
 
     @PostMapping("/package/create_package")
-    public Long createPackage(@RequestParam("packageName") String packageName, Model model) {
+    public String createPackage(@RequestParam("packageName") String packageName, Model model) {
         model.addAttribute("package", new Package.Builder(packageName));
         return "package";
     }
