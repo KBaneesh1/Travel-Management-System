@@ -5,11 +5,13 @@ public interface Transport {
     String getVehicleName();
     void setVehicleName(String vehicleName);
 
+    String getvehicleType();
+    
     Float getPricePerDay();
     void setPricePerDay(Float pricePerDay);
 
-    String getLocation();
-    void setLocation(String location);
+    String getBaseLocation();
+    void setBaseLocation(String location);
    
     
     Integer getCapacity();

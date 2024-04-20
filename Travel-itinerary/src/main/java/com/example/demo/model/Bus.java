@@ -15,7 +15,7 @@ public class Bus implements Transport {
     private Float pricePerDay;
     private Integer capacity;
     private String driverInfo;
-    private String location;
+    private String baseLocation;
     private byte[] vehicleImage;
 
     // Implement Transport interface methods
@@ -31,7 +31,12 @@ public class Bus implements Transport {
     public void setVehicleName(String vehicleName) {
         this.vehicleName = vehicleName;
     }
-   
+
+    @Override
+    public String getvehicleType(){
+        return vehicleType;
+    }
+
     @Override
     public Float getPricePerDay() {
         return pricePerDay;
@@ -42,12 +47,12 @@ public class Bus implements Transport {
         this.pricePerDay = pricePerDay;
     }
     @Override
-    public String getLocation(){
-        return location;
+    public String getBaseLocation(){
+        return baseLocation;
     }
     @Override
-    public void setLocation(String location){
-        this.location = location;
+    public void setBaseLocation(String baseLocation){
+        this.baseLocation = baseLocation;
     }
     @Override
     public Integer getCapacity() {

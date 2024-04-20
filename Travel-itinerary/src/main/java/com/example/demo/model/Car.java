@@ -81,6 +81,7 @@
    
 // }
 // Car.java
+
 package com.example.demo.model;
 
 import jakarta.persistence.*;
@@ -97,7 +98,7 @@ public class Car implements Transport {
     private Float pricePerDay;
     private Integer capacity;
     private String driverInfo;
-    private String location;
+    private String baseLocation;
     private byte[] vehicleImage;
 
     // Implement Transport interface methods
@@ -114,6 +115,10 @@ public class Car implements Transport {
         this.vehicleName = vehicleName;
     }
     @Override
+    public String getvehicleType(){
+        return vehicleType;
+    }
+    @Override
     public Float getPricePerDay() {
         return pricePerDay;
     }
@@ -123,12 +128,12 @@ public class Car implements Transport {
         this.pricePerDay = pricePerDay;
     }
     @Override
-    public String getLocation(){
-        return location;
+    public String getBaseLocation(){
+        return baseLocation;
     }
     @Override
-    public void setLocation(String location){
-        this.location = location;
+    public void setBaseLocation(String baseLocation){
+        this.baseLocation = baseLocation;
     }
     @Override
     public void setCapacity(Integer capacity) {
@@ -161,3 +166,5 @@ public class Car implements Transport {
     // Getters and setters for additional fields
    
 }
+
+

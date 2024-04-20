@@ -1,35 +1,174 @@
+// package com.example.demo.controller;
+
+// import com.example.demo.model.BaseLocation;
+// import com.example.demo.model.Bus;
+// import com.example.demo.model.Car;
+
+// import com.example.demo.service.TransportService;
+// import org.springframework.beans.factory.annotation.Autowired;
+// import org.springframework.stereotype.Controller;
+// import org.springframework.ui.Model;
+// import org.springframework.web.bind.annotation.*;
+// import org.springframework.web.multipart.MultipartFile;
+// import java.io.IOException;
+// import java.util.*;
+// import java.time.*;
+// @Controller
+// @RequestMapping("/transport")
+// public class TransportController {
+
+//     // private List<Map<String, Long>> cart = new ArrayList<>();
+
+//     @Autowired
+//     private TransportService transportService;
+
+//     @GetMapping
+//     public String showAllTransports(Model model) {
+//         LocalDate l1 = LocalDate.of(2024,1,15);
+//         LocalDate l2 = LocalDate.of(2024,8,15);
+//         BaseLocation b = new BaseLocation(0, "Bengaluru", "A very big city of all the gardens and garbages");
+//         List<Car> cars = transportService.getAllCars(l1 , l2,b);
+//         List<Bus> buses = transportService.getAllBuses(l1,l2,b);
+//         model.addAttribute("cars", cars);
+//         model.addAttribute("buses", buses);
+//         return "transport";
+//     }
+
+//     @GetMapping("/addCar")
+//     public String showAddCarForm(Model model) {
+//         model.addAttribute("car", new Car());
+//         return "addCar";
+//     }
+
+//     @PostMapping("/addCar")
+//     public String addCar(@RequestParam("file") MultipartFile file, Car car) {
+//         System.out.println();
+//         if (!file.isEmpty()) {
+//             try {
+//                 byte[] imageBytes = file.getBytes();
+//                 car.setVehicleImage(imageBytes);
+//             } 
+//             catch (IOException e) 
+//             {
+//                 // Handle the exception (e.g., log error, show error message)
+//                 e.printStackTrace();
+//                 // Return an appropriate view indicating the error
+//                 return "error";
+//             }
+//         }
+
+//         transportService.addCar(car);
+//         return "redirect:/transport";
+//     }
+
+//     @GetMapping("/addBus")
+//     public String showAddBusForm(Model model) {
+//         model.addAttribute("bus", new Bus());
+//         return "addBus";
+//     }
+
+//     @PostMapping("/addBus")
+//     public String addBus(@RequestParam(name = "file",required = true) MultipartFile file, Bus bus) {
+//         if (!file.isEmpty()) {
+//             try {
+//                 byte[] imageBytes = file.getBytes();
+//                 bus.setVehicleImage(imageBytes);
+//             } catch (IOException e) {
+//                 // Handle the exception (e.g., log error, show error message)
+//                 e.printStackTrace();
+//                 // Return an appropriate view indicating the error
+//                 return "error";
+//             }
+//         }
+//         transportService.addBus(bus);
+//         return "redirect:/transport";
+//     }
+//     @GetMapping("/editCar/{id}")
+//     public String editCar(@PathVariable Long id, Model model) {
+//         Car car = transportService.getCarById(id);
+//         model.addAttribute("car", car);
+//         System.out.println("in get edit car");
+//         return "editCar";
+//     }
+//     @PostMapping("/editCar/{id}")
+//     public String updateCar(@PathVariable("id") Long id, @ModelAttribute Car updatedCar) {
+//         System.out.println("done dedwed");
+//         transportService.updateCar(id, updatedCar);
+//         return "redirect:/transport";
+//     }
+
+//     @GetMapping("/editBus/{id}")
+//     public String editBus(@PathVariable Long id, Model model) {
+//         Bus bus = transportService.getBusById(id);
+//         model.addAttribute("bus", bus);
+//         return "editBus";
+//     }
+//     @PostMapping("/editBus/{id}")
+//     public String updateBus(@PathVariable("id") Long id, @ModelAttribute Bus updatedBus) {
+//         transportService.updateBus(id, updatedBus);
+//         return "redirect:/transport";
+//     }
+//     @GetMapping("/deleteCar/{id}")
+//     public String deleteCar(@PathVariable Long id) {
+//         transportService.deleteCar(id);
+//         return "redirect:/transport";
+//     }
+//     @GetMapping("/deleteBus/{id}")
+//     public String deleteMovie(@PathVariable Long id) {
+//         transportService.deleteBus(id);
+//         return "redirect:/transport";
+//     }
+//     @PostMapping("/addToCart")
+//     @ResponseBody
+//     public String addToCart(@RequestParam("vehicleType") String vehicleType, @RequestParam("id") Long id) {
+//         Long itemId = Long.valueOf(id);
+//         transportService.addToCart(vehicleType, itemId);
+//         return "Item added to cart!";
+//     }
+
+//     @GetMapping("/viewCart")
+//     @ResponseBody
+//     public List<Map<String, Long>> viewCart() {
+//         return transportService.getCart();
+//     }
+
+// }
 package com.example.demo.controller;
 
-import com.example.demo.model.BaseLocation;
+// import com.example.demo.model.BaseLocation;
 import com.example.demo.model.Bus;
 import com.example.demo.model.Car;
-
-import com.example.demo.service.TransportService;
+import com.example.demo.serviceImpl.CarService;
+import com.example.demo.serviceImpl.BusService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
 import java.io.IOException;
-import java.util.*;
-import java.time.*;
+// import java.time.LocalDate;
+import java.util.List;
+
 @Controller
 @RequestMapping("/transport")
 public class TransportController {
 
-    // private List<Map<String, Long>> cart = new ArrayList<>();
+    @Autowired
+    private CarService carService;
 
     @Autowired
-    private TransportService transportService;
+    private BusService busService;
 
     @GetMapping
     public String showAllTransports(Model model) {
-        LocalDate l1 = LocalDate.of(2024,1,15);
-        LocalDate l2 = LocalDate.of(2024,8,15);
-        BaseLocation b = new BaseLocation(0, "Bengaluru", "A very big city of all the gardens and garbages");
-        List<Car> cars = transportService.getAllCars(l1 , l2,b);
-        List<Bus> buses = transportService.getAllBuses(l1,l2,b);
+  
+        String b = "Bengaluru";
+        // BaseLocation b = new BaseLocation(0, "Delhi", "A very big city of all the gardens and garbages");
+        List<Car> cars = carService.getVehicleByBaseLocation(b);
+        List<Bus> buses = busService.getVehicleByBaseLocation(b);
         model.addAttribute("cars", cars);
+        
         model.addAttribute("buses", buses);
         return "transport";
     }
@@ -42,22 +181,17 @@ public class TransportController {
 
     @PostMapping("/addCar")
     public String addCar(@RequestParam("file") MultipartFile file, Car car) {
-        System.out.println();
         if (!file.isEmpty()) {
             try {
                 byte[] imageBytes = file.getBytes();
                 car.setVehicleImage(imageBytes);
-            } 
-            catch (IOException e) 
-            {
-                // Handle the exception (e.g., log error, show error message)
+            } catch (IOException e) {
                 e.printStackTrace();
-                // Return an appropriate view indicating the error
                 return "error";
             }
         }
 
-        transportService.addCar(car);
+        carService.addVehicle(car);
         return "redirect:/transport";
     }
 
@@ -74,62 +208,63 @@ public class TransportController {
                 byte[] imageBytes = file.getBytes();
                 bus.setVehicleImage(imageBytes);
             } catch (IOException e) {
-                // Handle the exception (e.g., log error, show error message)
                 e.printStackTrace();
-                // Return an appropriate view indicating the error
                 return "error";
             }
         }
-        transportService.addBus(bus);
+        busService.addVehicle(bus);
         return "redirect:/transport";
     }
+
     @GetMapping("/editCar/{id}")
     public String editCar(@PathVariable Long id, Model model) {
-        Car car = transportService.getCarById(id);
+        Car car = carService.getVehicleById(id);
         model.addAttribute("car", car);
-        System.out.println("in get edit car");
         return "editCar";
     }
+
     @PostMapping("/editCar/{id}")
     public String updateCar(@PathVariable("id") Long id, @ModelAttribute Car updatedCar) {
-        System.out.println("done dedwed");
-        transportService.updateCar(id, updatedCar);
+        carService.updateVehicle(id, updatedCar);
         return "redirect:/transport";
     }
 
     @GetMapping("/editBus/{id}")
     public String editBus(@PathVariable Long id, Model model) {
-        Bus bus = transportService.getBusById(id);
+        Bus bus = busService.getVehicleById(id);
         model.addAttribute("bus", bus);
         return "editBus";
     }
+
     @PostMapping("/editBus/{id}")
     public String updateBus(@PathVariable("id") Long id, @ModelAttribute Bus updatedBus) {
-        transportService.updateBus(id, updatedBus);
+        busService.updateVehicle(id, updatedBus);
         return "redirect:/transport";
     }
+
     @GetMapping("/deleteCar/{id}")
     public String deleteCar(@PathVariable Long id) {
-        transportService.deleteCar(id);
+        carService.deleteVehicle(id);
         return "redirect:/transport";
     }
+
     @GetMapping("/deleteBus/{id}")
-    public String deleteMovie(@PathVariable Long id) {
-        transportService.deleteBus(id);
+    public String deleteBus(@PathVariable Long id) {
+        busService.deleteVehicle(id);
         return "redirect:/transport";
     }
+
     @PostMapping("/addToCart")
     @ResponseBody
     public String addToCart(@RequestParam("vehicleType") String vehicleType, @RequestParam("id") Long id) {
-        Long itemId = Long.valueOf(id);
-        transportService.addToCart(vehicleType, itemId);
+        // Handle cart operations here
         return "Item added to cart!";
     }
 
     @GetMapping("/viewCart")
     @ResponseBody
-    public List<Map<String, Long>> viewCart() {
-        return transportService.getCart();
+    public List<String> viewCart() {
+        // Handle cart operations here
+        return null;
     }
-
 }
