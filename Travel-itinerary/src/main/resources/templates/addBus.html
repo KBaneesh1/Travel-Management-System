@@ -4,26 +4,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Bus</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        /* Add your CSS styling here */
+        /* Add any additional CSS styling here */
     </style>
 </head>
 <body>
-    <h1>Add Bus</h1>
-    <form action="/transport/addBus" method="post" enctype="multipart/form-data">
-        <label for="vehicleName">Vehicle Name:</label><br>
-        <input type="text" id="vehicleName" name="vehicleName"><br>
-        <label for="pricePerDay">Price Per Day:</label><br>
-        <input type="number" id="pricePerDay" name="pricePerDay"><br>
-        <label for="capacity">Capacity:</label><br>
-        <input type="number" id="capacity" name="capacity"><br>
-        <label for="driverInfo">Driver Info:</label><br>
-        <input type="text" id="driverInfo" name="driverInfo"><br>
-        <label for="location">Base location:</label><br>
-        <input type="text" id="location" name="location"><br>
-        <label for="vehicleImage">Vehicle Image:</label><br>
-        <input type="file" id="vehicleImage" name="file"><br>
-        <button type="submit">Submit</button>
-    </form>
+    <div class="container">
+        <h1>Add Bus</h1>
+        <form action="/transport/addBus" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="vehicleName">Vehicle Name:</label>
+                <input type="text" class="form-control" id="vehicleName" name="vehicleName">
+            </div>
+            <div class="form-group">
+                <label for="pricePerDay">Price Per Day:</label>
+                <input type="number" class="form-control" id="pricePerDay" name="pricePerDay">
+            </div>
+            <div class="form-group">
+                <label for="capacity">Capacity:</label>
+                <input type="number" class="form-control" id="capacity" name="capacity">
+            </div>
+            <div class="form-group">
+                <label for="driverInfo">Driver Info:</label>
+                <input type="text" class="form-control" id="driverInfo" name="driverInfo">
+            </div>
+            <div class="form-group">
+                <label for="baseLocation">Base location:</label>
+                <input type="text" class="form-control" id="baseLocation" name="baseLocation">
+            </div>
+            <div class="form-group">
+                <label for="vehicleImage">Vehicle Image:</label>
+                <input type="file" class="form-control-file" id="vehicleImage" name="file">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+    <!-- Bootstrap JS and jQuery (optional) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
