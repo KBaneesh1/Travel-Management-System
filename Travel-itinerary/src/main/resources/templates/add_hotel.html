@@ -56,6 +56,10 @@
                 <input th:field="${hotelDetails.hotel.address}" type="text" class="form-control" id="address" name="address" required>
             </div>
             <div class="form-group">
+                <label for="baseLocation">Base Location:</label>
+                <input th:field="${hotelDetails.hotel.baseLocation}" type="text" class="form-control" id="baseLocation" name="baseLocation" required>
+            </div>
+            <div class="form-group">
                 <p> <strong th:text="${hotelDetails.acRoom.roomType}"></strong> Details</p>
                 <label for="numACRooms">Number of AC Rooms:</label>
                 <input th:field="${hotelDetails.acRoom.numRooms}" type="number" class="form-control" id="numACRooms" name="numACRooms" required>
