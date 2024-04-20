@@ -1,0 +1,48 @@
+.card {
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: white;
+    font-size: 18px;
+    transition: all 0.3s;
+    box-shadow: 5px 5px 10px 2px rgb(204, 204, 204);
+}
+.card:hover{
+    transform: scale(1.05);
+}
+
+.edit-button {
+    background-color: #51dad5f4; 
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: black;
+}
+
+.edit-button:hover {
+    background-color: #5efef9f4;
+}
+
+.package-button {
+    background-color: #3fcf4df4; 
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: black;
+}
+
+.package-button:hover {
+    background-color: #47d873f4;
+}
+p{
+    font-size:20px;
+}
+p > span{
+    font-size: 20px;
+    font-weight: bold;
+}
+a{
+    font-size: 18px;
+}

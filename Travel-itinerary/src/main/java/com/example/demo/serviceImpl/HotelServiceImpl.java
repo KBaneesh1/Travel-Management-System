@@ -1,6 +1,7 @@
 package com.example.demo.serviceImpl;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import com.example.demo.repository.HotelRepository;
 import com.example.demo.services.HotelService;
@@ -30,5 +31,10 @@ public class HotelServiceImpl implements HotelService{
     @Override
     public Hotel getHotelById(Long id){
         return hotelRepository.findById(id).get();
+    }
+
+    @Override
+    public List<Hotel> getHotelsByBaseLocation(String baseLocation){
+        return hotelRepository.findByBaseLocation(baseLocation);
     }
 }
