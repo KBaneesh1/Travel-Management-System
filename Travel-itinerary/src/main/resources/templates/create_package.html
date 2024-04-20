@@ -7,9 +7,17 @@
     </head>
 <body>
     <h1>Create Package</h1>
-    <form action="#" th:action="@{/create_package}" th:object="${user}" method="post">
+    <form action="#" th:action="@{/package/create_package}" method="post">
         <label for="packageName">Package name:</label>
-        <input type="text" id="username" name="packageName" required><br><br>
-
+        <input type="text" id="packageName" name="packageName" required><br><br>
+        <label for="baseLocation">BaseLocation:</label>
+        <input type="text" id="baseLocation" name="baseLocation" required><br><br>
+        <!-- <select id="baseLocation" name="baseLocation">
+            <option value="Bengaluru">Bengaluru</option>
+            <option value="Himachal">Himachal</option>
+            <option value="Goa">Goa</option>
+            <option value="Mysore">Mysore</option> -->
+        <!-- </select> -->
+        
         <button type="submit">Create package</button>
     </form>

@@ -1,4 +1,4 @@
-INSERT INTO car (vehicleName, vehicleType, pricePerDay, capacity, driverInfo, baseLocation, vehicleImage) 
+INSERT INTO car (vehicle_name, vehicle_type, price_per_day, capacity, driver_info, base_location, vehicle_image) 
 VALUES 
 ('Toyota Corolla', 'car', 60.0, 5, 'seekesh ', 'Bengaluru', NULL),
 ('Honda Civic', 'car', 55.0, 5, 'Suresh', 'New Delhi', NULL),
@@ -7,7 +7,7 @@ VALUES
 ('BMW 3 Series', 'car', 80.0, 4, 'Lokesh ', 'Kolkata', NULL);
 
 
-INSERT INTO Bus(vehicleName, vehicleType, pricePerDay, capacity, driverInfo, baseLocation, vehicleImage) 
+INSERT INTO Bus(vehicle_name, vehicle_type, price_per_day, capacity, driver_info, base_location, vehicle_image) 
 VALUES 
 ('Volvo B7R', 'bus', 200.0, 50, 'John Doe', 'Mumbai', NULL),
 ('Mercedes-Benz Sprinter', 'bus', 180.0, 40, 'Jane Smith', 'Delhi', NULL),

@@ -21,6 +21,7 @@ public class Package {
     private ArrayList<Hotel> hotels;
     private Transport transport;
     private double price;
+    private String baseLocation;
     
 
     private Package() {
@@ -28,12 +29,10 @@ public class Package {
         // apparently this is to avoid direct instantiation
     }
 
-    // Method to add a hotel to the package
     public void addHotel(Hotel hotel) {
         hotels.add(hotel);
     }
 
-    // Method to set the transport for the package
     public void setTransport(Transport transport) {
         this.transport = transport;
     }
@@ -59,15 +58,25 @@ public class Package {
         private String description;
         private ArrayList<Hotel> hotels = new ArrayList<>();
         private Transport transport;
+        private String baseLocation;
         private double price;
 
-        public Builder(String packageName) {
+        public Builder() {
+            // this.packageName = packageName;
+        }
+
+        public Builder setName(String packageName) {
             this.packageName = packageName;
-            this.price = price;
+            return this;
         }
 
         public Builder description(String description) {
             this.description = description;
+            return this;
+        }
+
+        public Builder setBaseLocation(String baseLocation) {
+            this.baseLocation = baseLocation;
             return this;
         }
 
@@ -93,6 +102,7 @@ public class Package {
             travelPackage.hotels = this.hotels;
             travelPackage.transport = this.transport;
             travelPackage.price = this.price;
+            travelPackage.baseLocation = this.baseLocation;
             return travelPackage;
         }
     }

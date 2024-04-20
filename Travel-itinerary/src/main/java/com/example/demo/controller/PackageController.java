@@ -41,13 +41,15 @@ public class PackageController {
 
     }
 
-    @GetMapping("/show_hotels_transport/{baseLocation}")
+    @GetMapping("/package/{baseLocation}")
     public String viewHotelsTransport(@PathVariable("baseLocation") String baseLocation, Model model) {
-        
+        System.out.println("inside redirect");
+        model.addAttribute("baseLocation", baseLocation);
         List<HotelRoomDetails> allDetails = new ArrayList<HotelRoomDetails>(); 
         List<Hotel> hotelInfo = hotelService.getHotelsByBaseLocation(baseLocation);
-
+        
         for (Hotel hotel : hotelInfo) {
+            System.out.println(hotel.getName());
             HotelRoomDetails temp = new HotelRoomDetails();
             temp.setHotel(hotel);
             temp.setAcRoom(roomService.getACRoomByHotelId(hotel.getId()));
@@ -62,24 +64,31 @@ public class PackageController {
         // will this work:
         model.addAttribute("allCarDetails", cars);
         model.addAttribute("allBusDetails", buses);
-        return "make_package";
-    }
-
-    @GetMapping("/package/add_hotel/{id}")
-    public String addHotelToPackage(@PathVariable("id") Long id, Model model) {
-        HotelRoomDetails  hotelDetails = new HotelRoomDetails();
-
-        Hotel hotel = hotelService.getHotelById(id);
-
-
-    }
-
-    @PostMapping("/package/create_package")
-    public String createPackage(@RequestParam("packageName") String packageName, Model model) {
-        model.addAttribute("package", new Package.Builder(packageName));
         return "package";
     }
 
+    // @GetMapping("/package/add_hotel/{id}")
+    // public String addHotelToPackage(@PathVariable("id") Long id, Model model) {
+    //     HotelRoomDetails  hotelDetails = new HotelRoomDetails();
 
+    //     Hotel hotel = hotelService.getHotelById(id);
+    // }
+
+
+    @GetMapping("/package/create_package")
+    public String createPackage(Model model) {
+        model.addAttribute("package", new Package.Builder());
+        return "create_package";
+    }
+    @PostMapping("/package/create_package")
+    public String createPackage(@RequestParam("packageName") String packageName, @RequestParam("baseLocation") String baseLocation, 
+    @ModelAttribute Package.Builder p, Model model) {
+        System.out.println(baseLocation);
+        p.setName(packageName).setBaseLocation(baseLocation);
+        System.out.println("redirect:/package/{baseLocation}");
+        System.out.println("redirect:/package/" + baseLocation);
+        return "redirect:/package/" + baseLocation;
+        // return "redirect:/transport";
+    }
 
 }
