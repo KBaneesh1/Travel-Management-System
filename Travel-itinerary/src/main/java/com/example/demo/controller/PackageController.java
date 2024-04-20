@@ -7,6 +7,8 @@ import com.example.demo.model.Hotel;
 import com.example.demo.model.Package;
 
 import com.example.demo.service.TransportService;
+import com.example.demo.service.CarService;
+import com.example.demo.service.BusService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,25 +21,64 @@ import java.time.*;
 @Controller
 
 public class PackageController {
-    @GetMapping("/make_package")
-    public String viewPackage(@RequestParam("hotel") Hotel hotel,  Model model) {
-        Package travelPackage = new Package();
+
+    private HotelService hotelService;
+    private RoomService roomService;
+    private CarService carService;
+    private BusService busService;
+
+    
+
+    public PackageController(HotelService hotelService, RoomService roomService, 
+    CarService carService, BusService busService) {
         
-        Hotel hotel1 = new Hotel(hotel);
+        super();
+        this.hotelService = hotelService;
+        this.roomService = roomService;
+        this.carService = carService;
+        this.busService = busService;
+
+    }
+
+    @GetMapping("/show_hotels_transport/{baseLocation}")
+    public String viewHotelsTransport(@PathVariable("baseLocation") String baseLocation, Model model) {
         
-        Transport transport = new Transport("Flight XYZ");
-        
-        travelPackage.addHotel(hotel1);
-        travelPackage.addHotel(hotel2);
-        travelPackage.setTransport(transport);
-        
-        model.addAttribute("travelPackage", travelPackage);
+        List<HotelRoomDetails> allDetails = new ArrayList<HotelRoomDetails>(); 
+        List<Hotel> hotelInfo = hotelService.getHotelsByBaseLocation(baseLocation);
+
+        for (Hotel hotel : hotelInfo) {
+            HotelRoomDetails temp = new HotelRoomDetails();
+            temp.setHotel(hotel);
+            temp.setAcRoom(roomService.getACRoomByHotelId(hotel.getId()));
+            temp.setNonACRoom(roomService.getNonACRoomByHotelId(hotel.getId()));
+            
+            allDetails.add(temp);
+        }
+
+        List<Car> cars = CarService.getVehicleByBaseLocation(baseLocation);
+        List<Bus> buses = BusService.getVehicleByBaseLocation(baseLocation);
+        model.addAttribute("allHotelDetails", allDetails);
+        // will this work:
+        model.addAttribute("allCarDetails", cars);
+        model.addAttribute("allBusDetails", buses);
+        return "make_package";
+    }
+
+    @GetMapping("/package/add_hotel/{id}")
+    public String addHotelToPackage(@PathVariable("id") Long id, Model model) {
+        HotelRoomDetails  hotelDetails = new HotelRoomDetails();
+
+        Hotel hotel = hotelService.getHotelById(id);
+
+
+    }
+
+    @PostMapping("/package/create_package")
+    public Long createPackage(@RequestParam("packageName") String packageName, Model model) {
+        model.addAttribute("package", new Package.Builder(packageName));
         return "package";
     }
 
 
-    @GetMapping("/package/add_hotel/{id}")
-    public String addHotelToPackage(@PathVariable("id") Long id, Model model) {
-        
-    }
+
 }

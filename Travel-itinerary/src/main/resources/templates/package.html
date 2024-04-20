@@ -3,27 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <title>Create Package</title>
+    <link rel="stylesheet" href="style.css">
     <script>
         function addHotelSelection() {
             var select = document.createElement("select");
             select.name = "hotels";
-            select.innerHTML = '<option value="Hotel A">Hotel A</option>' +
-                               '<option value="Hotel B">Hotel B</option>' +
+            select.innerHTML = '<option value="Hotel A">Hotel Leh Views</option>' +
+                               '<option value="Hotel B">Hotel Ladakh Paradise</option>' +
                                '<option value="Hotel C">Hotel C</option>'; // Add more hotel options as needed
             document.getElementById("hotelSelection").appendChild(select);
         }
     </script>
+    
 </head>
 <body>
     <h1>Create Package</h1>
     
-    <form action="/create-package" method="post">
+    <button> Create package </button>
         <h2>Select Hotels:</h2>
         <div id="hotelSelection">
-            <!-- Initially, display one hotel selection -->
             <select name="hotels">
-                <option value="Hotel A">Hotel A</option>
-                <option value="Hotel B">Hotel B</option>
+                <option value="Hotel Leh Views">Hotel Leh Views</option>
+                <option value="Hotel B">Ladakh Paradise</option>
                 <option value="Hotel C">Hotel C</option> <!-- Add more hotel options as needed -->
             </select>
         </div>
@@ -31,7 +32,7 @@
         
         <h2>Select Transport:</h2>
         <select name="transport">
-            <option value="Flight XYZ">Flight XYZ</option>
+            <option value="Car from Leh to Manali">Car from Leh to Manali</option>
             <option value="Train ABC">Train ABC</option>
             <!-- Add more transport options as needed -->
         </select>
@@ -40,3 +41,48 @@
     </form>
 </body>
 </html>
+
+
+
+<h2>Hotel Information</h2>
+    <div class="hotelInfo">
+        <div class="cards-container" th:each="hotelDetails:${allHotelDetails}">
+            <div class="card" style="border:black solid;">
+                
+                <p th:text="${hotelDetails.hotel.name}"></p>
+                <p th:text="${hotelDetails.hotel.address}"></p>
+                <p th:text="${hotelDetails.acRoom.numRooms}"></p>
+                <p th:text="${hotelDetails.acRoom.PricePerNight}"></p>
+                <p th:text="${hotelDetails.acRoom.amenities}"></p>
+                <p th:text="${hotelDetails.nonACRoom.numRooms}"></p>
+                <p th:text="${hotelDetails.nonACRoom.amenities}"></p>
+                <p th:text="${hotelDetails.nonACRoom.PricePerNight}"></p>
+                <br/>
+                <div >
+                    <a th:href="@{/hotels/edit/{id}(id=${hotelDetails.hotel.id})}">
+                        Edit
+                    </a>
+                </div>
+                <div >
+                    <a th:href="@{/add_hotel/}">
+                        Add hotel to package
+                    </a>
+                </div>
+            </div>
+            <br/>
+        </div>
+    </div>
+    <!-- <table>
+        <thead>
+            <tr>
+                <th>Hotel Name</th>
+                <th>Location</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="hotel : ${hotels}">
+                <td th:text="${hotel.name}"></td>
+                <td th:text="${hotel.address}"></td>
+            </tr>
+        </tbody>
+    </table> -->

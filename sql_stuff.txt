@@ -1,0 +1,16 @@
+INSERT INTO car (vehicleName, vehicleType, pricePerDay, capacity, driverInfo, baseLocation, vehicleImage) 
+VALUES 
+('Toyota Corolla', 'car', 60.0, 5, 'seekesh ', 'Bengaluru', NULL),
+('Honda Civic', 'car', 55.0, 5, 'Suresh', 'New Delhi', NULL),
+('Ford Mustang', 'car', 70.0, 4, 'Ramesh ', 'Mumbai', NULL),
+('Tesla Model S', 'car', 100.0, 4, 'Mahesh ', 'Chennai', NULL),
+('BMW 3 Series', 'car', 80.0, 4, 'Lokesh ', 'Kolkata', NULL);
+
+
+INSERT INTO Bus(vehicleName, vehicleType, pricePerDay, capacity, driverInfo, baseLocation, vehicleImage) 
+VALUES 
+('Volvo B7R', 'bus', 200.0, 50, 'John Doe', 'Mumbai', NULL),
+('Mercedes-Benz Sprinter', 'bus', 180.0, 40, 'Jane Smith', 'Delhi', NULL),
+('Scania K-series', 'bus', 250.0, 60, 'Michael Johnson', 'Bangalore', NULL),
+('Ashok Leyland Cheetah', 'bus', 150.0, 30, 'Emily Brown', 'Chennai', NULL),
+('Tata Marcopolo', 'bus', 170.0, 35, 'David Lee', 'Kolkata', NULL);

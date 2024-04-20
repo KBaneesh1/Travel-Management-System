@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Package</title>
+    <link rel="stylesheet" href="style.css">
+    </head>
+<body>
+    <h1>Create Package</h1>
+    <form action="#" th:action="@{/create_package}" th:object="${user}" method="post">
+        <label for="packageName">Package name:</label>
+        <input type="text" id="username" name="packageName" required><br><br>
+
+        <button type="submit">Create package</button>
+    </form>
