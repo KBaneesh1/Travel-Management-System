@@ -7,7 +7,7 @@ import jakarta.persistence.*;
 
 
 
-// @Entity
+@Entity
 // @Table(name="package")
 public class Package {
     // there can be many hotels for one package, only one transport
