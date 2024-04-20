@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Create Package</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous"/>
     <link rel="stylesheet" href="style.css">
     <script>
         function addHotelSelection() {
@@ -17,9 +18,26 @@
     
 </head>
 <body>
+
+
+
     <h1>Create Package</h1>
-    
-        <h2>Select Hotels:</h2>
+    <form action="#" th:action="@{/package/create_package}" method="post">
+        <label for="packageName">Package name:</label>
+        <input type="text" id="packageName" name="packageName" required><br><br>
+        <label for="baseLocation">BaseLocation:</label>
+        <input type="text" id="baseLocation" name="baseLocation" required><br><br>
+        <!-- <select id="baseLocation" name="baseLocation">
+            <option value="Bengaluru">Bengaluru</option>
+            <option value="Himachal">Himachal</option>
+            <option value="Goa">Goa</option>
+            <option value="Mysore">Mysore</option> -->
+        <!-- </select> -->
+        
+        <button type="submit">Create package</button>
+    </form>
+
+
         <!-- <div id="hotelSelection">
             <select name="hotels">
                 <option value="Hotel Leh Views">Hotel Leh Views</option>
@@ -42,6 +60,7 @@
 
 <h2>Hotel Information</h2>
 <div class="hotelInfo">
+    <h1> Hotels </h1>
         <div class="cards-container" th:each="hotelDetails:${allHotelDetails}">
             <div class="card" style="border:black solid;">
                 
@@ -53,13 +72,12 @@
                 <p th:text="${hotelDetails.nonACRoom.numRooms}"></p>
                 <p th:text="${hotelDetails.nonACRoom.amenities}"></p>
                 <p th:text="${hotelDetails.nonACRoom.PricePerNight}"></p>
+                <!-- <button onclick="addToCart('${hotelDetails}', '${hotelDetails.hotel.baseLocation}')"> Add hotel to package </button> -->
+                <!-- </a> -->
+                 <a th:href="@{'/package/' + ${baseLocation} + '/' + ${hotelDetails.hotel.id} + '/add_hotel'}">Select Hotel</a>
+
                 <br/>
-                <div >
-                    <a th:href="@{/hotels/edit/{id}(id=${hotelDetails.hotel.id})}">
-                        Edit
-                    </a>
-                </div>
-                <div >
+                <div>
                     <!-- <a th:href="@{/add_hotel/}"> -->
                         <!-- Add hotel to package -->
                     <!-- </a> -->
@@ -67,7 +85,69 @@
             </div>
             <br/>
         </div>
+
+</div>
+
+<div class="transportInfo">
+    <h1> Cars: </h1>
+    <div class="cards-container" th:each="car:${allCars}">
+        <div class="card" style="border:black solid;">
+            <p th:text="${car.vehicleName}"></p>
+            <p th:text="${car.pricePerDay}"></p>
+            <p th:text="${car.capacity}"></p>
+            <p th:text="${car.driverInfo}"></p>
+            <p th:text="${car.baseLocation}"></p>
+            <br/>
+            <div>
+                <!-- <a th:href="@{/add_hotel/}"> -->
+                    <!-- Add hotel to package -->
+                <!-- </a> -->
+            </div>
+        </div>
+        <br/>
     </div>
+
+
+    <h1> Buses </h1>
+    <div class="cards-container" th:each="bus:${allBuses}">
+        <div class="card" style="border:black solid;">
+            <p th:text="${bus.vehicleName}"></p>
+            <p th:text="${bus.pricePerDay}"></p>
+            <p th:text="${bus.capacity}"></p>
+            <p th:text="${bus.driverInfo}"></p>
+            <p th:text="${bus.baseLocation}"></p>
+            <br/>
+            <div>
+                <!-- <a th:href="@{/add_hotel/}"> -->
+                    <!-- Add hotel to package -->
+                <!-- </a> -->
+            </div>
+        </div>
+        <br/>
+    </div>
+
+</div>
+
+<script>
+    function addToCart(hotelDetailsJson, baseLocation) {
+    // Parse hotelDetails JSON string back to object
+    var hotelDetails = JSON.parse(hotelDetailsJson);
+    
+    // Send hotelDetails object to backend using AJAX
+    $.ajax({
+        type: "POST",
+        url: "package/" + baseLocation + "/add_hotel",
+        contentType: "application/json",
+        data: JSON.stringify(hotelDetails),
+        success: function(response) {
+            console.log("Hotel added to package successfully.");
+        },
+        error: function(xhr, status, error) {
+            console.error("Error adding hotel to package:", error);
+        }
+    });
+}</script>
+
     <!-- <table>
         <thead>
             <tr>

@@ -7,7 +7,8 @@ import jakarta.persistence.*;
 
 
 
-
+// @Entity
+// @Table(name="package")
 public class Package {
     // there can be many hotels for one package, only one transport
     @Id
@@ -17,7 +18,7 @@ public class Package {
     private String description;
     
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "pack_id")
+    @JoinColumn(name = "package_id")
     private ArrayList<Hotel> hotels;
     private Transport transport;
     private double price;
@@ -93,6 +94,14 @@ public class Package {
         public Builder setPrice(double price) {
             this.price = price;
             return this;
+        }
+
+        public String getName() {
+            return this.packageName;
+        }
+
+        public String getBaseLocation() {
+            return this.baseLocation;
         }
 
         public Package build() {

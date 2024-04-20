@@ -14,3 +14,17 @@ VALUES
 ('Scania K-series', 'bus', 250.0, 60, 'Michael Johnson', 'Bangalore', NULL),
 ('Ashok Leyland Cheetah', 'bus', 150.0, 30, 'Emily Brown', 'Chennai', NULL),
 ('Tata Marcopolo', 'bus', 170.0, 35, 'David Lee', 'Kolkata', NULL);
+
+
+INSERT INTO nonac_rooms (id, price_per_night, amenities, hotel_id, num_rooms, room_type) 
+VALUES 
+(1, 1700, 'Breakfast', 1, 25, 'Non-AC Room'),
+(6, 3000, 'Wi-Fi', 3, 10, 'Non-AC Room'),
+(7, 2000, 'Wi-Fi', 4, 15, 'Non-AC Room'),
+(8, 2800, 'Wi-Fi, Lighthouse tour', 5, 20, 'Non-AC Room'),
+(9, 1500, 'Wifi', 6, 10, 'Non-AC Room'),
+(10, 2000, 'Wi-Fi', 7, 15, 'Non-AC Room');
+
+
+INSERT INTO hotels (id, address, hotel_name, base_location) 
+VALUES (7, 'Pondicherry', 'Java Resort', 'Pondicherry');
