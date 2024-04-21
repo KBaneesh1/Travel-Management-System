@@ -7,12 +7,12 @@ VALUES
 ('BMW 3 Series', 'car', 80.0, 4, 'Lokesh ', 'Kolkata', NULL);
 
 
-INSERT INTO Bus(vehicle_name, vehicle_type, price_per_day, capacity, driver_info, base_location, vehicle_image) 
+INSERT INTO transport(vehicle_name, vehicle_type, price_per_day, capacity, driver_info, base_location, vehicle_image) 
 VALUES 
-('Volvo B7R', 'bus', 200.0, 50, 'John Doe', 'Mumbai', NULL),
-('Mercedes-Benz Sprinter', 'bus', 180.0, 40, 'Jane Smith', 'Delhi', NULL),
+('Mercedes-Benz Sprinter', 'bus', 180.0, 40, 'Jane Smith', 'Himachal', NULL),
 ('Scania K-series', 'bus', 250.0, 60, 'Michael Johnson', 'Bangalore', NULL),
 ('Ashok Leyland Cheetah', 'bus', 150.0, 30, 'Emily Brown', 'Chennai', NULL),
+('Volvo B7R', 'bus', 200.0, 50, 'John Doe', 'Mumbai', NULL),
 ('Tata Marcopolo', 'bus', 170.0, 35, 'David Lee', 'Kolkata', NULL);
 
 
@@ -28,3 +28,7 @@ VALUES
 
 INSERT INTO hotels (id, address, hotel_name, base_location) 
 VALUES (7, 'Pondicherry', 'Java Resort', 'Pondicherry');
+
+INSERT INTO transport(vehicle_name, vehicle_type, price_per_day, capacity, driver_info, base_location, vehicle_image) 
+VALUES 
+('Tata Indica', 'bus', 150.0, 30, 'Emily Brown', 'Himachal', NULL);

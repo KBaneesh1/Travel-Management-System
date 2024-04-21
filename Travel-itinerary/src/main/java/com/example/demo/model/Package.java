@@ -17,21 +17,24 @@ public class Package {
     private String packageName;
     private String description;
     
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany()
     @JoinTable(
         name = "package_hotel", // Name of the join table
         joinColumns = @JoinColumn(name = "package_id"), // Foreign key column in the join table for 'Package' entity
         inverseJoinColumns = @JoinColumn(name = "hotel_id") // Foreign key column in the join table for 'Hotel' entity
     )
-    private ArrayList<Hotel> hotels;
+    private List<Hotel> hotels;
     private Transport transport;
     private double price;
     private String baseLocation;
     
 
     private Package() {
-        // hotels = new ArrayList<>();
+        // hotels = new List<>();
         // apparently this is to avoid direct instantiation
+    }
+    public String getPackageName() {
+        return this.packageName;
     }
 
     public void addHotel(Hotel hotel) {
@@ -43,11 +46,11 @@ public class Package {
     }
 
     // Getters and setters for hotels and transport
-    public ArrayList<Hotel> getHotels() {
+    public List<Hotel> getHotels() {
         return hotels;
     }
 
-    public void setHotels(ArrayList<Hotel> hotels) {
+    public void setHotels(List<Hotel> hotels) {
         this.hotels = hotels;
     }
 
@@ -61,7 +64,7 @@ public class Package {
         private Long package_id;
         private String packageName;
         private String description;
-        private ArrayList<Hotel> hotels = new ArrayList<>();
+        private List<Hotel> hotels = new ArrayList<>();
         private Transport transport;
         private String baseLocation;
         private double price;
@@ -109,7 +112,7 @@ public class Package {
             return this.baseLocation;
         }
 
-        public ArrayList<Hotel> getHotels() {
+        public List<Hotel> getHotels() {
             return hotels;
         }
         

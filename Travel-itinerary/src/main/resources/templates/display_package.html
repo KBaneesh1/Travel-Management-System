@@ -56,8 +56,12 @@
     <div class="container">
         <!-- <div th:each="transport : ${transports}" class="card"> -->
             <h2 th:text = "${this_package.packageName}"></h2>
+            <div class="col-md-6" th:each="hotel:${this_package.hotels}">
+
             <div class="attributes">
-                <p class="attribute" th:text="'Price Per Day: $' + ${this_package.transport.vehicleName}"></p>
+                <p class="attribute" th:text="'Vehicle Type: ' + ${this_package.transport.vehicleType}"></p>
+                <p class="attribute" th:text="'Vehicle Name: ' + ${this_package.transport.vehicleName}"></p>
+                <p class="attribute" th:text="'Hotel name: ' + ${hotel.name}"></p>
                 <!-- <p class="attribute" th:text="'Vehicle Type: $' + ${transport.vehicleType}"></p>
                 <p class="attribute" th:text="'Capacity: ' + ${transport.capacity}"></p>
                 <p class="attribute" th:text="'Driver Info: ' + ${transport.driverInfo}"></p>

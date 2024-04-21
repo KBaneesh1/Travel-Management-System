@@ -109,7 +109,7 @@ public class PackageController {
 
         p.addHotel(hotel);
         System.out.println("Hotels chosen are");
-        ArrayList<Hotel> hotels = p.getHotels();
+        List<Hotel> hotels = p.getHotels();
         for (Hotel hot : hotels) {
             System.out.println(hot.getName());
         }
