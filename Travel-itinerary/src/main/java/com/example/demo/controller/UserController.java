@@ -2,7 +2,7 @@ package com.example.demo.controller;
 import com.example.demo.model.User;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.model.UserType;
-
+import com.example.demo.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,13 +10,20 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 @Controller
+@SessionAttributes("user")
 public class UserController {
     
     @Autowired
     private UserRepository userRepository;
     
+    @ModelAttribute("user") // Initialize the session attribute
+    public User initializeUsername() {
+        return new User(); // Initial value for the username
+    }
     @GetMapping("/register")
     public String showRegistrationForm(Model model) {
         model.addAttribute("user", new User());
@@ -24,7 +31,7 @@ public class UserController {
     }
     
     @PostMapping("/register")
-    public String registerUser(@ModelAttribute("user") User user, Model model) {
+    public String registerUser(@SessionAttribute("user") User user, Model model) {
         userRepository.save(user); // Save user data to the database
         model.addAttribute("successMessage", "User registered successfully!");
         return "register";
@@ -83,7 +90,7 @@ public class UserController {
     public String userLogin(@RequestParam("username") String username, @RequestParam("password") String password, Model model) {
         User user = userRepository.findByUsername(username);
         if (user != null && user.getPassword().equals(password) && user.getUserType().equals("USER")) {
-            return "home";
+            return "choose_package";
         } else {
             return "error_page";
         }

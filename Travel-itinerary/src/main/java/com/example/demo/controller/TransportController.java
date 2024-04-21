@@ -163,7 +163,7 @@ public class TransportController {
     @GetMapping
     public String showAllTransports(Model model) {
   
-        String b = "Bengaluru";
+        String b = "Himachal";
         // BaseLocation b = new BaseLocation(0, "Delhi", "A very big city of all the gardens and garbages");
         List<Transport> transport = transportService.getTransportByBaseLocation(b);
         // List<Bus> buses = busService.getVehicleByBaseLocation(b);

@@ -26,6 +26,14 @@ VALUES
 (10, 2000, 'Wi-Fi', 7, 15, 'Non-AC Room');
 
 
+(1, 'Bengaluru', 'Comfort Inn', 'Bengaluru'),
+(3, 'Shimla', 'New Shimla Hotel', 'Himachal'),
+(4, 'Mysore', 'Crystal Park Mysore', 'Mysore'),
+(5, 'North Goa', 'Bay View Goa', 'Goa'),
+(6, 'Bengaluru', 'XYZ Hotel', 'Bengaluru'),
+(7, 'Pondicherry', 'Java Resort','Pondicherry');
+
+
 INSERT INTO hotels (id, address, hotel_name, base_location) 
 VALUES (7, 'Pondicherry', 'Java Resort', 'Pondicherry');
 

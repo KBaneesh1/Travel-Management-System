@@ -62,9 +62,7 @@ public class Hotel{
     public void setBaseLocation(String baseLocation) {
         this.baseLocation = baseLocation;
     }
-
     
-
     /* public List<RoomType> getRooms() {
         return rooms;
     }

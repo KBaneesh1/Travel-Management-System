@@ -8,7 +8,8 @@ import com.example.demo.model.HotelRoomDetails;
 import com.example.demo.services.HotelService;
 import com.example.demo.services.RoomService;
 import com.example.demo.repository.PackageRepository;
-
+import com.example.demo.model.User;
+import com.example.demo.model.UserPackage;
 // import com.example.demo.serviceImpl.CarService;
 import com.example.demo.serviceImpl.TransportServiceImpl;
 // import com.example.demo.serviceImpl.BusService;
@@ -140,8 +141,27 @@ public class PackageController {
         Package new_package = p.build();
         packageRepository.save(new_package);
         System.out.println("Transport in this package is: " + p.getTransport().getVehicleName());
-        model.addAttribute("this_package", new_package);
+        model.addAttribute("packages", new_package);
         model.addAttribute("baseLocation", baseLocation);
         return "display_package";
     }
+
+    @GetMapping("/display_package/choose_package")
+    public String choosePackage(@PathVariable("baseLocation") String baseLocation, Model model){
+        List<Package> pack = packageRepository.findByBaseLocation(baseLocation);
+        model.addAttribute("packages", pack);
+        model.addAttribute("baseLocation", baseLocation);
+        return "display_package";
+    }
+    @GetMapping("/display_package/{baseLocation}/{package_id}")
+    public String selectPackage(@SessionAttribute("user") User user,@PathVariable("baseLocation") String baseLocation,@PathVariable("package_id") Long package_id)
+    {
+        Package pack = packageRepository.findById(package_id).orElse(null);
+        UserPackage userPackage = new UserPackage();
+        userPackage.setPack(pack);
+        userPackage.setUser(user);
+        
+        return "home";
+    }
+    // @GetMapping("/display_package/{baseLocation}")
 }
