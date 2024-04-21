@@ -9,6 +9,6 @@ import java.util.*;
 
 @Repository
 public interface PackageRepository extends JpaRepository<Package, Long> {
-    @Query("Select p from package p where baseLocation=:baseLocation")
-    public List<Package> findByBaseLocation(@Param("baseLocation")String baseLocation);
+    @Query("Select p from Package p where p.baseLocation=:baseLocation")
+    public List<Package> findByBaseLocation(String baseLocation);
 }

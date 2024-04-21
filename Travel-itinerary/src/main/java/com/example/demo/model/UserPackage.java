@@ -4,11 +4,10 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 import jakarta.persistence.*;
+import java.io.Serializable;
 
 @Entity
 public class UserPackage {
-
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long user_package_id;
@@ -33,5 +32,4 @@ public class UserPackage {
     public void setPack(Package pack2) {
         this.pack = pack2;
     }
-    
 }

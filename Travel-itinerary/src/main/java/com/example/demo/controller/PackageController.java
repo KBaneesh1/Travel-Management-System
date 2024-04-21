@@ -8,6 +8,7 @@ import com.example.demo.model.HotelRoomDetails;
 import com.example.demo.services.HotelService;
 import com.example.demo.services.RoomService;
 import com.example.demo.repository.PackageRepository;
+import com.example.demo.repository.UserPackageRepository;
 import com.example.demo.model.User;
 import com.example.demo.model.UserPackage;
 // import com.example.demo.serviceImpl.CarService;
@@ -30,6 +31,7 @@ public class PackageController {
     private RoomService roomService;
     private TransportServiceImpl transportService;
     private PackageRepository packageRepository;
+    private UserPackageRepository userPackageRepository;
     // private BusService busService;
 
     
@@ -145,10 +147,21 @@ public class PackageController {
         model.addAttribute("baseLocation", baseLocation);
         return "display_package";
     }
+    @GetMapping("/display_packages")
+    public String dispPack(@SessionAttribute("user") User user)
+    {
+        return "choose_package";
+    }
 
-    @GetMapping("/display_package/choose_package")
-    public String choosePackage(@PathVariable("baseLocation") String baseLocation, Model model){
+    @PostMapping("/display_packages")
+    public String choosePackage(@RequestParam("baseLocation") String baseLocation, Model model){
+        System.out.println("in display "+baseLocation);
+        List<Package> pase = packageRepository.findAll();
+        System.out.println("after finall");
         List<Package> pack = packageRepository.findByBaseLocation(baseLocation);
+        // for(Package p:pack){
+        //     System.out.println("pack = "+p.getPackageName());
+        // }
         model.addAttribute("packages", pack);
         model.addAttribute("baseLocation", baseLocation);
         return "display_package";
@@ -160,7 +173,7 @@ public class PackageController {
         UserPackage userPackage = new UserPackage();
         userPackage.setPack(pack);
         userPackage.setUser(user);
-        
+        userPackageRepository.save(userPackage);
         return "home";
     }
     // @GetMapping("/display_package/{baseLocation}")

@@ -31,7 +31,7 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "transport")
-public class Transport implements Serializable {
+public class Transport {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="transport_id")

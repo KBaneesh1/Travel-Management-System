@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @Controller
 @SessionAttributes("user")
@@ -31,7 +32,7 @@ public class UserController {
     }
     
     @PostMapping("/register")
-    public String registerUser(@SessionAttribute("user") User user, Model model) {
+    public String registerUser(@ModelAttribute("user") User user, Model model) {
         userRepository.save(user); // Save user data to the database
         model.addAttribute("successMessage", "User registered successfully!");
         return "register";
@@ -69,7 +70,7 @@ public class UserController {
     public String adminLogin(@RequestParam("username") String username, @RequestParam("password") String password, Model model) {
         User user = userRepository.findByUsername(username);
         if (user != null && user.getPassword().equals(password) && user.getUserType().equals("ADMIN")) {
-            return "admin_home";
+            return "redirect:/display_package";
         } else {
             return "error_page";
         }
@@ -90,7 +91,7 @@ public class UserController {
     public String userLogin(@RequestParam("username") String username, @RequestParam("password") String password, Model model) {
         User user = userRepository.findByUsername(username);
         if (user != null && user.getPassword().equals(password) && user.getUserType().equals("USER")) {
-            return "choose_package";
+            return "redirect:/display_packages";
         } else {
             return "error_page";
         }
