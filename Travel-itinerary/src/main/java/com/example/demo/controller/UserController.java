@@ -39,20 +39,7 @@ public class UserController {
         return "login";
     }
 
-    
-    // @GetMapping("/admin/home")
-    // public String adminHome() {
-    //     return "admin_home";
-    // }
-    
-    // @GetMapping("/service/home")
-    // public String serviceHome() {
-    //     return "service_home";
-    // }
-    
-    // @GetMapping("/user/home")
-    // public String userHome() {
-        //     return "home";
+
     @GetMapping("/admin/login")
     public String showAdminLoginForm() {
         return "admin_login";
@@ -62,7 +49,7 @@ public class UserController {
     public String adminLsogin(@RequestParam("username") String username, @RequestParam("password") String password, Model model) {
         User user = userRepository.findByUsername(username);
         if (user != null && user.getPassword().equals(password) && user.getUserType().equals("ADMIN")) {
-            return "admin_home";
+        return "redirect:/package/create_package";
         } else {
             return "error_page";
         }

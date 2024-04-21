@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Packages</title>
+    <style>
+        .package-card {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s ease-in-out;
+        }
+        .package-card:hover {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        .package-card button {
+            background-color: #4CAF50;
+            color: white;
+            /* padding: 10px 20px; */
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            float: right;
+        }
+        .package-card button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Travel Packages</h1>
+<!--     
+    <div class="package-card">
+        <h2>Leh-Ladakh Adventure</h2>
+        <p>Embark on an unforgettable adventure to the mesmerizing landscapes of Leh-Ladakh. 
+            Explore pristine lakes, ancient monasteries, and breathtaking mountain vistas.</p>
+        <p>Hotels: Hotel Leh Views, Ladakh Paradise</p>
+        <p>Transport: Car from Leh to Ladakh</p>
+        <p>Price: Rs 49999</p>
+        <button onclick="choosePackage('Package 1')">Choose Package</button>
+    </div>
+
+    <div class="package-card">
+        <h2>Discover New Delhi</h2>
+        <p>Immerse yourself in the vibrant culture and rich history of India's capital city, New Delhi. 
+            Visit iconic landmarks, bustling markets, and historic monuments.</p>
+        <p>Hotels: Hotel City Center, Hotel Royal Plaza</p>
+        <p>Transport: Tata Indica for travel within New Delhi</p>
+        <p>Price: Rs 44999</p>
+        <button onclick="choosePackage('Package 2')">Choose Package</button>
+    </div> -->
+
+    <div class="container">
+        <!-- <div th:each="transport : ${transports}" class="card"> -->
+            <h2 th:text = "${this_package.packageName}"></h2>
+            
+            <div class="attributes">
+                <p class="attribute" th:text="'Vehicle Type: ' + ${this_package.transport.vehicleType}"></p>
+                <p class="attribute" th:text="'Vehicle Name: ' + ${this_package.transport.vehicleName}"></p>
+                <div class="col-md-6" th:each="hotel:${this_package.hotels}">
+                    <p class="attribute" th:text="'Hotel name: ' + ${hotel.name}"></p>
+                <!-- <p class="attribute" th:text="'Vehicle Type: $' + ${transport.vehicleType}"></p>
+                <p class="attribute" th:text="'Capacity: ' + ${transport.capacity}"></p>
+                <p class="attribute" th:text="'Driver Info: ' + ${transport.driverInfo}"></p>
+                <p class = "attribute" th:text="'Base location: ' +${transport.baseLocation}"></p>
+                <button onclick="addToTransportt('transport','${transport.id}')">Add to Package</button>
+                <a th:href="@{/transport/editTransport/{id}(id=${transport.id})}">Edit</a> |
+                <a th:href="@{/transport/deleteTransport/{id}(id=${transport.id})}" onclick="return confirm('Are you sure you want to delete this transport?')">Delete</a> -->
+               
+            </div>
+        </div>
+
+    <script>
+        function choosePackage(packageName) {
+            alert('You have chosen ' + packageName);
+            // Add your logic here to handle package selection
+        }
+    </script>
+</body>
+</html>
