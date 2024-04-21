@@ -17,8 +17,12 @@ public class Package {
     private String packageName;
     private String description;
     
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "package_id")
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+        name = "package_hotel", // Name of the join table
+        joinColumns = @JoinColumn(name = "package_id"), // Foreign key column in the join table for 'Package' entity
+        inverseJoinColumns = @JoinColumn(name = "hotel_id") // Foreign key column in the join table for 'Hotel' entity
+    )
     private ArrayList<Hotel> hotels;
     private Transport transport;
     private double price;
@@ -86,6 +90,7 @@ public class Package {
             return this;
         }
 
+        
         public Builder transport(Transport transport) {
             this.transport = transport;
             return this;
@@ -102,6 +107,14 @@ public class Package {
 
         public String getBaseLocation() {
             return this.baseLocation;
+        }
+
+        public ArrayList<Hotel> getHotels() {
+            return hotels;
+        }
+        
+        public Transport getTransport() {
+            return this.transport;
         }
 
         public Package build() {

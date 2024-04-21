@@ -32,7 +32,7 @@
 </head>
 <body>
     <h1>Travel Packages</h1>
-    
+<!--     
     <div class="package-card">
         <h2>Leh-Ladakh Adventure</h2>
         <p>Embark on an unforgettable adventure to the mesmerizing landscapes of Leh-Ladakh. 
@@ -51,9 +51,23 @@
         <p>Transport: Tata Indica for travel within New Delhi</p>
         <p>Price: Rs 44999</p>
         <button onclick="choosePackage('Package 2')">Choose Package</button>
-    </div>
+    </div> -->
 
-    <!-- Add more package cards as needed -->
+    <div class="container">
+        <!-- <div th:each="transport : ${transports}" class="card"> -->
+            <h2 th:text = "${this_package.packageName}"></h2>
+            <div class="attributes">
+                <p class="attribute" th:text="'Price Per Day: $' + ${this_package.transport.vehicleName}"></p>
+                <!-- <p class="attribute" th:text="'Vehicle Type: $' + ${transport.vehicleType}"></p>
+                <p class="attribute" th:text="'Capacity: ' + ${transport.capacity}"></p>
+                <p class="attribute" th:text="'Driver Info: ' + ${transport.driverInfo}"></p>
+                <p class = "attribute" th:text="'Base location: ' +${transport.baseLocation}"></p>
+                <button onclick="addToTransportt('transport','${transport.id}')">Add to Package</button>
+                <a th:href="@{/transport/editTransport/{id}(id=${transport.id})}">Edit</a> |
+                <a th:href="@{/transport/deleteTransport/{id}(id=${transport.id})}" onclick="return confirm('Are you sure you want to delete this transport?')">Delete</a> -->
+               
+            </div>
+        </div>
 
     <script>
         function choosePackage(packageName) {

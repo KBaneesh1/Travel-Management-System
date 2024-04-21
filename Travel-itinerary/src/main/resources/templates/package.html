@@ -26,13 +26,13 @@
         <label for="packageName">Package name:</label>
         <input type="text" id="packageName" name="packageName" required><br><br>
         <label for="baseLocation">BaseLocation:</label>
-        <input type="text" id="baseLocation" name="baseLocation" required><br><br>
-        <!-- <select id="baseLocation" name="baseLocation">
+        <!-- <input type="text" id="baseLocation" name="baseLocation" required><br><br> -->
+        <select id="baseLocation" name="baseLocation">
             <option value="Bengaluru">Bengaluru</option>
             <option value="Himachal">Himachal</option>
             <option value="Goa">Goa</option>
-            <option value="Mysore">Mysore</option> -->
-        <!-- </select> -->
+            <option value="Mysore">Mysore</option> 
+        </select>
         
         <button type="submit">Create package</button>
     </form>
@@ -92,61 +92,25 @@
     <h1> Transport: </h1>
     <div class="cards-container" th:each="transport:${allTransports}">
         <div class="card" style="border:black solid;">
-            <p th:text="${transport.vehicleName}"></p>
-            <p th:text="${transport.pricePerDay}"></p>
-            <p th:text="${transport.capacity}"></p>
-            <p th:text="${transport.driverInfo}"></p>
-            <p th:text="${transport.baseLocation}"></p>
+            <p class="attribute" th:text="'Price Per Day: $' + ${transport.pricePerDay}"></p>
+            <p class="attribute" th:text="'Vehicle Type: $' + ${transport.vehicleType}"></p>
+            <p class="attribute" th:text="'Capacity: ' + ${transport.capacity}"></p>
+            <p class="attribute" th:text="'Driver Info: ' + ${transport.driverInfo}"></p>
+            <p class = "attribute" th:text="'Base location: ' +${transport.baseLocation}"></p>
+            <a th:href="@{'/package/' + ${baseLocation} + '/' + ${transport.id} + '/add_transport'}">Add Transport</a>
+
             <br/>
             <div>
-                <!-- <a th:href="@{/add_hotel/}"> -->
-                    <!-- Add hotel to package -->
-                <!-- </a> -->
             </div>
         </div>
         <br/>
     </div>
-
-
-    <!-- <h1> Buses </h1>
-    <div class="cards-container" th:each="bus:${allBuses}">
-        <div class="card" style="border:black solid;">
-            <p th:text="${bus.vehicleName}"></p>
-            <p th:text="${bus.pricePerDay}"></p>
-            <p th:text="${bus.capacity}"></p>
-            <p th:text="${bus.driverInfo}"></p>
-            <p th:text="${bus.baseLocation}"></p>
-            <br/>
-            <div>
-                 <a th:href="@{/add_hotel/}"> -->
-                    <!-- Add hotel to package -->
-                <!-- </a> -->
-            <!-- </div>
-        </div>
-        <br/>
-    </div> --> 
-
 </div>
 
-<script>
-    function addToCart(hotelDetailsJson, baseLocation) {
-    // Parse hotelDetails JSON string back to object
-    var hotelDetails = JSON.parse(hotelDetailsJson);
-    
-    // Send hotelDetails object to backend using AJAX
-    $.ajax({
-        type: "POST",
-        url: "package/" + baseLocation + "/add_hotel",
-        contentType: "application/json",
-        data: JSON.stringify(hotelDetails),
-        success: function(response) {
-            console.log("Hotel added to package successfully.");
-        },
-        error: function(xhr, status, error) {
-            console.error("Error adding hotel to package:", error);
-        }
-    });
-}</script>
+<a th:href="@{'/package/' + ${baseLocation} + '/confirm_package'}"> Confirm package! </a>
+
+
+
 
     <!-- <table>
         <thead>
