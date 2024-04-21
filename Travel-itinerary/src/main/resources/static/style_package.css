@@ -1,0 +1,97 @@
+body{
+    margin: 40px;
+}
+.header-container {
+    text-align: center; /* Center align text */
+    margin-bottom: 20px; /* Add margin for spacing */
+    text-transform: uppercase;
+}
+label {
+    font-weight: bold; /* Make labels bold */
+}
+input[type="submit"] {
+    width: 100%; /* Make submit button full width */
+    padding: 10px; /* Add padding for better appearance */
+    background-color: #007bff; /* Blue background */
+    color: #fff; /* White text color */
+    border: none; /* Remove border */
+    cursor: pointer; /* Add cursor pointer on hover */
+}
+input[type="submit"]:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+p{
+    font-size: large;
+    font-weight: bold;
+    padding:10px;
+}
+p > span{
+    font-size: 20px;
+    font-weight: bold;
+}
+.card-container{
+    display: flex;
+    justify-content: center;
+}
+.card {
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: white;
+    font-size: 18px;
+    width: max-content;
+    box-shadow: 5px 5px 10px 2px rgb(204, 204, 204);
+}
+.card:hover{
+    background-color:azure;
+}
+.select-button{
+    width:150px;
+    height: 30px;
+    background-color: rgb(16, 188, 16);
+    font-size: 18px;
+    border-radius: 10px;
+    text-align:center;
+}
+
+a{
+    color:white;
+}
+
+/* display-package */
+.header{
+    margin:30px;
+    text-align:center;
+    color: rgb(193, 37, 193);
+}
+.package-card-container{
+    display: flex;
+    justify-content: center;
+}
+.package-card {
+    /* background-color: rgb(122, 255, 211); */
+    background-color: rgb(253, 255, 127);
+    /* border: 1px solid #b5b0b0; */
+    width: 60%;
+    height: 25%;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    padding: 20px;
+    box-shadow: 5px 5px 10px 2px rgb(204, 204, 204);
+    transition: box-shadow 0.3s ease-in-out;
+}
+.package-card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+.package-card button {
+    background-color: #4CAF50;
+    color: white;
+    /* padding: 10px 20px; */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    float: right;
+}
+.package-card button:hover {
+    background-color: #45a049;
+}

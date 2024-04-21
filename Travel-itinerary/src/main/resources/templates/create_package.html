@@ -3,21 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <title>Create Package</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous"/>
     </head>
 <body>
     <h1>Create Package</h1>
     <form action="#" th:action="@{/package/create_package}" method="post">
-        <label for="packageName">Package name:</label>
-        <input type="text" id="packageName" name="packageName" required><br><br>
-        <label for="baseLocation">BaseLocation:</label>
-        <input type="text" id="baseLocation" name="baseLocation" required><br><br>
-        <!-- <select id="baseLocation" name="baseLocation">
+        <div class="form-group">
+            <label for="packageName">Package name:</label>
+            <input class="form-control" type="text" id="packageName" name="packageName" required><br><br>
+        </div>
+        <div class="form-group">
+            <label for="baseLocation">BaseLocation:</label>
+            <input class="form-control" type="text" id="baseLocation" name="baseLocation" required><br><br>
+        </div>
+        <button type="submit">Create package</button>
+    </form>
+<!-- <select id="baseLocation" name="baseLocation">
             <option value="Bengaluru">Bengaluru</option>
             <option value="Himachal">Himachal</option>
             <option value="Goa">Goa</option>
             <option value="Mysore">Mysore</option> -->
         <!-- </select> -->
-        
-        <button type="submit">Create package</button>
-    </form>

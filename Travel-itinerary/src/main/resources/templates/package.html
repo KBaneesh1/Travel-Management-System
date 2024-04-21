@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Create Package</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous"/>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" type="text/css" href="/style_package.css">
     <script>
         function addHotelSelection() {
             var select = document.createElement("select");
@@ -21,20 +21,23 @@
 
 
 
-    <h1>Create Package</h1>
+    <h1 class="text-center">Create Package</h1>
     <form action="#" th:action="@{/package/create_package}" method="post">
-        <label for="packageName">Package name:</label>
-        <input type="text" id="packageName" name="packageName" required><br><br>
-        <label for="baseLocation">BaseLocation:</label>
-        <!-- <input type="text" id="baseLocation" name="baseLocation" required><br><br> -->
-        <select id="baseLocation" name="baseLocation">
-            <option value="Bengaluru">Bengaluru</option>
-            <option value="Himachal">Himachal</option>
-            <option value="Goa">Goa</option>
-            <option value="Mysore">Mysore</option> 
-        </select>
-        
-        <button type="submit">Create package</button>
+        <div class="form-group">
+            <label for="packageName">Package name:</label>
+            <input type="text" class="form-control" id="packageName" name="packageName" required>
+        </div>
+        <div class="form-group">
+            <label for="baseLocation">Base Location:</label>
+            <select class="form-control" id="baseLocation" name="baseLocation">
+                <option value="Bengaluru">Bengaluru</option>
+                <option value="Chennai">Chennai</option>
+                <option value="Himachal">Himachal</option>
+                <option value="Goa">Goa</option>
+                <option value="Mysore">Mysore</option> 
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Create package</button>
     </form>
 
 
@@ -55,27 +58,25 @@
         <button type="submit">Create Package</button>
     </form>
 </body> -->
-
-
-
-<h2>Hotel Information</h2>
 <div class="hotelInfo">
-    <h1> Hotels </h1>
+    <h1 class="header-container"> Hotels </h1>
         <div class="cards-container" th:each="hotelDetails:${allHotelDetails}">
-            <div class="card" style="border:black solid;">
+            <div class="card">
                 
-                <p th:text="${hotelDetails.hotel.name}"></p>
-                <p th:text="${hotelDetails.hotel.address}"></p>
-                <p th:text="${hotelDetails.acRoom.numRooms}"></p>
-                <p th:text="${hotelDetails.acRoom.PricePerNight}"></p>
-                <p th:text="${hotelDetails.acRoom.amenities}"></p>
-                <p th:text="${hotelDetails.nonACRoom.numRooms}"></p>
-                <p th:text="${hotelDetails.nonACRoom.amenities}"></p>
-                <p th:text="${hotelDetails.nonACRoom.PricePerNight}"></p>
+                <p>Hotel Name: &nbsp;&nbsp; <span th:text="${hotelDetails.hotel.name}"></span></p>
+                <p>Hotel address:&nbsp;&nbsp; <span th:text="${hotelDetails.hotel.address}"></span></p>
+                <p>Number of AC Rooms:&nbsp;&nbsp; <span th:text="${hotelDetails.acRoom.numRooms}"></span></p>
+                <p>Price Per Night: &nbsp;&nbsp;Rs.<span th:text="${hotelDetails.acRoom.PricePerNight}"></span></p>
+                <p>Amenities:&nbsp;&nbsp; <span th:text="${hotelDetails.acRoom.amenities}"></span></p>
+                <p>Number of Non-AC Rooms:&nbsp;&nbsp; <span th:text="${hotelDetails.nonACRoom.numRooms}"></span></p>
+                <p>Amenities: &nbsp;&nbsp;<span th:text="${hotelDetails.nonACRoom.amenities}"></span></p>
+                <p>Price Per Night: &nbsp;&nbsp;Rs.<span th:text="${hotelDetails.nonACRoom.PricePerNight}"></span></p>
                 <!-- <button onclick="addToCart('${hotelDetails}', '${hotelDetails.hotel.baseLocation}')"> Add hotel to package </button> -->
                 <!-- </a> -->
-                 <a th:href="@{'/package/' + ${baseLocation} + '/' + ${hotelDetails.hotel.id} + '/add_hotel'}">Select Hotel</a>
-
+                <div class="justify-content align-items-center select-button">
+                    <a
+                    th:href="@{'/package/' + ${baseLocation} + '/' + ${hotelDetails.hotel.id} + '/add_hotel'}">Select Hotel</a>
+                </div>
                 <br/>
                 <div>
                     <!-- <a th:href="@{/add_hotel/}"> -->
@@ -89,15 +90,20 @@
 </div>
 
 <div class="transportInfo">
-    <h1> Transport: </h1>
+    <h1 class="header-container"> Transport </h1>
     <div class="cards-container" th:each="transport:${allTransports}">
-        <div class="card" style="border:black solid;">
-            <p class="attribute" th:text="'Price Per Day: $' + ${transport.pricePerDay}"></p>
-            <p class="attribute" th:text="'Vehicle Type: $' + ${transport.vehicleType}"></p>
+        <div class="card">
+            <p class="attribute" th:text="'Price Per Day: Rs.' + ${transport.pricePerDay}"></p>
+            <p class="attribute" th:text="'Vehicle Type: ' + ${transport.vehicleType}"></p>
             <p class="attribute" th:text="'Capacity: ' + ${transport.capacity}"></p>
             <p class="attribute" th:text="'Driver Info: ' + ${transport.driverInfo}"></p>
             <p class = "attribute" th:text="'Base location: ' +${transport.baseLocation}"></p>
-            <a th:href="@{'/package/' + ${baseLocation} + '/' + ${transport.id} + '/add_transport'}">Add Transport</a>
+            
+            <div class="justify-content align-items-center select-button">
+                <a class="select-button"
+                th:href="@{'/package/' + ${baseLocation} + '/' + ${transport.id} + '/add_transport'}">Add Transport</a>
+                
+            </div>
 
             <br/>
             <div>
@@ -106,8 +112,10 @@
         <br/>
     </div>
 </div>
+<div class="select-button align-items-center">
+    <a th:href="@{'/package/' + ${baseLocation} + '/confirm_package'}"> Confirm package! </a>
 
-<a th:href="@{'/package/' + ${baseLocation} + '/confirm_package'}"> Confirm package! </a>
+</div>
 
 
 
