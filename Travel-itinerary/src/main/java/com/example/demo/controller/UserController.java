@@ -59,7 +59,7 @@ public class UserController {
     }
 
     @PostMapping("/admin/login")
-    public String adminLsogin(@RequestParam("username") String username, @RequestParam("password") String password, Model model) {
+    public String adminLogin(@RequestParam("username") String username, @RequestParam("password") String password, Model model) {
         User user = userRepository.findByUsername(username);
         if (user != null && user.getPassword().equals(password) && user.getUserType().equals("ADMIN")) {
             return "admin_home";

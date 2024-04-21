@@ -56,39 +56,45 @@
 </head>
 <body>
     <div class="container">
-        <div th:each="car : ${cars}" class="card">
-            <h2 th:text = "${car.vehicleName}"></h2>
+        <div th:each="transport : ${transports}" class="card">
+            <h2 th:text = "${transport.vehicleName}"></h2>
             <div class="attributes">
-                <!-- <img th:if="${car.vehicleImage != null and car.vehicleImage.length > 0}" th:src="|data:image/jpeg;base64,${#strings.bytesToBase64(car.vehicleImage)}|" alt="Car Image"> -->
-                <!-- <p class="attribute" th:text="'Vehicle Name: ' + ${car.vehicleName}"></p> -->
-                <p class="attribute" th:text="'Price Per Day: $' + ${car.pricePerDay}"></p>
-                <p class="attribute" th:text="'Capacity: ' + ${car.capacity}"></p>
-                <p class="attribute" th:text="'Driver Info: ' + ${car.driverInfo}"></p>
-                <p class = "attribute" th:text="'Base location: ' +${car.location}"></p>
-                <button onclick="addToCart('car','${car.id}')">Add to Cart</button>
-                <a th:href="@{/transport/editCar/{id}(id=${car.id})}">Edit</a> |
-                <a th:href="@{/transport/deleteCar/{id}(id=${car.id})}" onclick="return confirm('Are you sure you want to delete this car?')">Delete</a>
+                <!-- <div th:if="${transport.vehicleImage != null}">
+                    <img th:src="@{'data:image/png;base64,' + ${transport.vehicleImage}}" class="img-fluid" alt="Vehicle Image"/>
+                </div> -->
+                <!-- <img th:src="'data:image/jpeg;base64,' + ${#strings.bytesToBase64(transport.vehicleImage)}" alt="Transport Image" /> -->
+                <p class="attribute" th:text="'Price Per Day: $' + ${transport.pricePerDay}"></p>
+                <p class="attribute" th:text="'Vehicle Type: $' + ${transport.vehicleType}"></p>
+                <p class="attribute" th:text="'Capacity: ' + ${transport.capacity}"></p>
+                <p class="attribute" th:text="'Driver Info: ' + ${transport.driverInfo}"></p>
+                <p class = "attribute" th:text="'Base location: ' +${transport.baseLocation}"></p>
+                <button onclick="addToTransportt('transport','${transport.id}')">Add to Package</button>
+                <a th:href="@{/transport/editTransport/{id}(id=${transport.id})}">Edit</a> |
+                <a th:href="@{/transport/deleteTransport/{id}(id=${transport.id})}" onclick="return confirm('Are you sure you want to delete this transport?')">Delete</a>
                
             </div>
         </div>
-        <div th:each="bus : ${buses}" class="card">
+        <!-- <div th:each="bus : ${buses}" class="card">
             <h2 th:text = "${bus.vehicleName}">Bus</h2>
             <div class="attributes">
-                <!-- <img th:src="|data:image/jpeg;base64,${#strings.bytesToBase64(bus.vehicleImage)}|" alt="Bus Image"> -->
+                 <img th:src="'data:image/jpeg;base64,' + ${#strings.bytesToBase64(bus.vehicleImage)}" alt="Car Image" /> -->
                 <!-- <p class="attribute" th:text="'Vehicle Name: ' + ${bus.vehicleName}"></p> -->
-                <p class="attribute" th:text="'Price Per Day: $' + ${bus.pricePerDay}"></p>
+                <!-- <div th:if="${bus.vehicleImage != null}">
+                    <img th:src="@{'data:image/png;base64,' + ${bus.vehicleImage}}" class="img-fluid" alt="Vehicle Image"/>
+                </div> -->
+                <!-- <p class="attribute" th:text="'Price Per Day: $' + ${bus.pricePerDay}"></p>
                 <p class="attribute" th:text="'Capacity: ' + ${bus.capacity}"></p>
                 <p class="attribute" th:text="'Driver Info: ' + ${bus.driverInfo}"></p>      
-                <p class = "attribute" th:text="'Base location: ' +${bus.location}"></p>
+                <p class = "attribute" th:text="'Base location: ' +${bus.baseLocation}"></p>
                 <button onclick="addToCart('bus','${bus.id}')">Add to Cart</button>
                 <a th:href="@{/transport/editBus/{id}(id=${bus.id})}">Edit</a> |
                 <a th:href="@{/transport/deleteBus/{id}(id=${bus.id})}" onclick="return confirm('Are you sure you want to delete this bus?')">Delete</a>
             </div>
-        </div>
+        </div> --> 
     </div>
     <div style="text-align: center; margin-top: 20px;">
-        <a href="/transport/addCar" style="margin-right: 20px;">Add Car</a>
-        <a href="/transport/addBus">Add Bus</a>
+        <a href="/transport/addTransport" style="margin-right: 20px;">Add Transport</a>
+        <!-- <a href="/transport/addBus">Add Bus</a> -->
     </div>
     <div style="text-align: center; margin-top: 20px;">
         <button onclick="viewCart()">View Cart</button>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Bus</title>
+    <title>Add Transport</title>
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
@@ -12,11 +12,15 @@
 </head>
 <body>
     <div class="container">
-        <h1>Add Bus</h1>
-        <form action="/transport/addBus" method="post" enctype="multipart/form-data">
+        <h1>Add Transport</h1>
+        <form action="/transport/addTransport" method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="vehicleName">Vehicle Name:</label>
                 <input type="text" class="form-control" id="vehicleName" name="vehicleName">
+            </div>
+            <div class="form-group">
+                <label for="vehicleType">Vehicle Type:</label>
+                <input type="text" class="form-control" id="vehicleType" name="vehicleType">
             </div>
             <div class="form-group">
                 <label for="pricePerDay">Price Per Day:</label>
@@ -36,7 +40,7 @@
             </div>
             <div class="form-group">
                 <label for="vehicleImage">Vehicle Image:</label>
-                <input type="file" class="form-control-file" id="vehicleImage" name="file">
+                <input type="file" class="form-control-file" id="vehicleImage" name="file" accept="image/*">
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
