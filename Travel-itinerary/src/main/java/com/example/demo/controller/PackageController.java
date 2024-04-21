@@ -21,7 +21,7 @@ import java.util.*;
 import java.time.*;
 
 @Controller
-// @SessionAttributes("package")
+@SessionAttributes("package")
 public class PackageController {
 
     private HotelService hotelService;

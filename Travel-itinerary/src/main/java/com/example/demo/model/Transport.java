@@ -24,11 +24,12 @@
 // }
 
 package com.example.demo.model;
+import java.io.Serializable;
+
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "transport")
-public class Transport {
+public class Transport implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
