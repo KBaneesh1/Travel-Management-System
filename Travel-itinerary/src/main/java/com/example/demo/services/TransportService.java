@@ -32,19 +32,21 @@
 package com.example.demo.services;
 
 // import com.example.demo.model.BaseLocation;
-import com.example.demo.model.Bus;
-import com.example.demo.model.Car;
+import com.example.demo.model.Transport;
+// import com.example.demo.model.Car;
 import java.time.LocalDate;
 import java.util.List;
 
+// import org.hibernate.dialect.function.TransactSQLStrFunction;
+
 public interface TransportService<T> {
-    List<T> getVehicleByBaseLocation(String baseloc);
+    List<Transport> getTransportByBaseLocation(String baseloc);
 
-    void addVehicle(T vehicle);
+    void addTransport(Transport transport);
 
-    T getVehicleById(Long id);
+    Transport getTransportById(Long id);
 
-    void deleteVehicle(Long id);
+    void deleteTransport(Long id);
 
-    T updateVehicle(Long id, T vehicle);
+    Transport updateTransport(Long id, Transport transport);
 }

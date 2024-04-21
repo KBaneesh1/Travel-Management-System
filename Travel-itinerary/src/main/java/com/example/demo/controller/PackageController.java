@@ -1,15 +1,16 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.Bus;
-import com.example.demo.model.Car;
+import com.example.demo.model.Transport;
+// import com.example.demo.model.Car;
 import com.example.demo.model.Hotel;
 import com.example.demo.model.Package;
 import com.example.demo.model.HotelRoomDetails;
 import com.example.demo.services.HotelService;
 import com.example.demo.services.RoomService;
 
-import com.example.demo.serviceImpl.CarService;
-import com.example.demo.serviceImpl.BusService;
+// import com.example.demo.serviceImpl.CarService;
+import com.example.demo.serviceImpl.TransportServiceImpl;
+// import com.example.demo.serviceImpl.BusService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,25 +21,22 @@ import java.util.*;
 import java.time.*;
 
 @Controller
-
 public class PackageController {
 
     private HotelService hotelService;
     private RoomService roomService;
-    private CarService carService;
-    private BusService busService;
+    private TransportServiceImpl transportService;
+    // private BusService busService;
 
     
 
     public PackageController(HotelService hotelService, RoomService roomService, 
-    CarService carService, BusService busService) {
+    TransportServiceImpl transportService) {
         
         super();
         this.hotelService = hotelService;
         this.roomService = roomService;
-        this.carService = carService;
-        this.busService = busService;
-
+        this.transportService = transportService;
     }
 
     @GetMapping("/package/{baseLocation}")
@@ -60,12 +58,12 @@ public class PackageController {
             allDetails.add(temp);
         }
 
-        List<Car> cars = carService.getVehicleByBaseLocation(baseLocation);
-        List<Bus> buses = busService.getVehicleByBaseLocation(baseLocation);
+        List<Transport> transports = transportService.getTransportByBaseLocation(baseLocation);
+        // List<Bus> buses = busService.getVehicleByBaseLocation(baseLocation);
         model.addAttribute("allHotelDetails", allDetails);
         // will this work:
-        model.addAttribute("allCars", cars);
-        model.addAttribute("allBuses", buses);
+        model.addAttribute("allTransports", transports);
+        // model.addAttribute("allBuses", buses);
         return "package";
     }
 

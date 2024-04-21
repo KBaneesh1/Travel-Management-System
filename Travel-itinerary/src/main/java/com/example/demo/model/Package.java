@@ -1,13 +1,13 @@
 package com.example.demo.model;
 import java.util.List;
-
+import com.example.demo.model.Transport;
 import java.util.ArrayList;
 
 import jakarta.persistence.*;
 
 
 
-// @Entity
+@Entity
 // @Table(name="package")
 public class Package {
     // there can be many hotels for one package, only one transport

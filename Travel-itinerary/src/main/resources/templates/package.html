@@ -89,14 +89,14 @@
 </div>
 
 <div class="transportInfo">
-    <h1> Cars: </h1>
-    <div class="cards-container" th:each="car:${allCars}">
+    <h1> Transport: </h1>
+    <div class="cards-container" th:each="transport:${allTransports}">
         <div class="card" style="border:black solid;">
-            <p th:text="${car.vehicleName}"></p>
-            <p th:text="${car.pricePerDay}"></p>
-            <p th:text="${car.capacity}"></p>
-            <p th:text="${car.driverInfo}"></p>
-            <p th:text="${car.baseLocation}"></p>
+            <p th:text="${transport.vehicleName}"></p>
+            <p th:text="${transport.pricePerDay}"></p>
+            <p th:text="${transport.capacity}"></p>
+            <p th:text="${transport.driverInfo}"></p>
+            <p th:text="${transport.baseLocation}"></p>
             <br/>
             <div>
                 <!-- <a th:href="@{/add_hotel/}"> -->
@@ -108,7 +108,7 @@
     </div>
 
 
-    <h1> Buses </h1>
+    <!-- <h1> Buses </h1>
     <div class="cards-container" th:each="bus:${allBuses}">
         <div class="card" style="border:black solid;">
             <p th:text="${bus.vehicleName}"></p>
@@ -118,13 +118,13 @@
             <p th:text="${bus.baseLocation}"></p>
             <br/>
             <div>
-                <!-- <a th:href="@{/add_hotel/}"> -->
+                 <a th:href="@{/add_hotel/}"> -->
                     <!-- Add hotel to package -->
                 <!-- </a> -->
-            </div>
+            <!-- </div>
         </div>
         <br/>
-    </div>
+    </div> --> 
 
 </div>
 
