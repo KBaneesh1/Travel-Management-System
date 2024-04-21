@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Edit Bus</title>
+    <title>Edit Transport</title>
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
@@ -11,30 +11,34 @@
 <body>
 
 <div class="container">
-    <h1>Edit Bus</h1>
+    <h1>Edit Transport</h1>
 
-    <form th:action="@{/transport/editBus/{id}(id=${bus.id})}" method="post">
+    <form th:action="@{/transport/editTransport/{id}(id=${transport.id})}" method="post">
         <div class="form-group">
             <label>Vehicle Name:</label>
-            <input type="text" class="form-control" th:field="${bus.vehicleName}" required/>
+            <input type="text" class="form-control" th:field="${transport.vehicleName}" required/>
+        </div>
+        <div class="form-group">
+            <label>Vehicle Type:</label>
+            <input type="text" class="form-control" th:field="${transport.vehicleType}" required/>
         </div>
         <div class="form-group">
             <label>Price Per Day:</label>
-            <input type="number" class="form-control" th:field="${bus.pricePerDay}" required/>
+            <input type="number" step="0.1" class="form-control" th:field="${transport.pricePerDay}" required/>
         </div>
         <div class="form-group">
             <label>Capacity:</label>
-            <input type="number" class="form-control" th:field="${bus.capacity}" required/>
+            <input type="number" class="form-control" th:field="${transport.capacity}" required/>
         </div>
         <div class="form-group">
             <label>Driver Info:</label>
-            <input type="text" class="form-control" th:field="${bus.driverInfo}" required/>
+            <input type="text" class="form-control" th:field="${transport.driverInfo}" required/>
         </div>
         <div class="form-group">
             <label>Base location:</label>
-            <input type="text" class="form-control" th:field="${bus.baseLocation}" required/>
+            <input type="text" class="form-control" th:field="${transport.baseLocation}" required/>
         </div>
-        <button type="submit" class="btn btn-primary">Update Bus</button>
+        <button type="submit" class="btn btn-primary">Update Transport</button>
     </form>
 </div>
 
