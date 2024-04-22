@@ -35,20 +35,20 @@
     <!-- Loop through each package -->
     <div th:each="package : ${packages}" class="package-card">
         <h2 th:text="${package.packageName}"></h2>
-        <p th:text="${package.description}"></p>
-        <p>Price: Rs <span th:text="${package.price}"></span></p>
-        <p>Base Location: <span th:text="${package.baseLocation}"></span></p>
+        <!-- <p th:text="${package.description}"></p> -->
+        <!-- <p>Price: Rs <span th:text="${package.price}"></span></p> -->
+        <p>Base Location: <span th:text="${baseLocation}"></span></p>
         
         <!-- Loop through each hotel -->
-        <div th:each="hotel : ${package.hotels}">
+        <!-- <div th:each="hotel : ${package.hotels}">
             <p th:text="'Hotel name: ' + ${hotel.name}"></p>
-        </div>
+        </div> -->
         
         <!-- Display transport details -->
-        <div>
+        <!-- <div>
             <p th:text="'Vehicle Type: ' + ${package.transport.vehicleType}"></p>
             <p th:text="'Vehicle Name: ' + ${package.transport.vehicleName}"></p>
-        </div>
+        </div> -->
         
         <!-- Button to choose package -->
         <!-- <button onclick="choosePackage('${package.packageName}')">Choose Package</button> -->

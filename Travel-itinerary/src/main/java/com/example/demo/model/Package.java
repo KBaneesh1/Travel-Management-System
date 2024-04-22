@@ -26,6 +26,9 @@ public class Package {
         inverseJoinColumns = @JoinColumn(name = "hotel_id") // Foreign key column in the join table for 'Hotel' entity
     )
     private List<Hotel> hotels;
+
+    @OneToOne
+    @JoinColumn(name = "transport_id")
     private Transport transport;
     private double price;
     private String baseLocation;

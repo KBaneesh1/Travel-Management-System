@@ -9,7 +9,7 @@ VALUES
 
 INSERT INTO transport(vehicle_name, vehicle_type, price_per_day, capacity, driver_info, base_location, vehicle_image) 
 VALUES 
-('Mercedes-Benz Sprinter', 'bus', 180.0, 40, 'Jane Smith', 'Himachal', NULL),
+('BMW', 'bus', 90, 5, 'Jane Morgan', 'Himachal', NULL),
 ('Scania K-series', 'bus', 250.0, 60, 'Michael Johnson', 'Bangalore', NULL),
 ('Ashok Leyland Cheetah', 'bus', 150.0, 30, 'Emily Brown', 'Chennai', NULL),
 ('Volvo B7R', 'bus', 200.0, 50, 'John Doe', 'Mumbai', NULL),

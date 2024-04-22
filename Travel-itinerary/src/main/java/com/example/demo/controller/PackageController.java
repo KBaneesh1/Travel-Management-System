@@ -162,6 +162,7 @@ public class PackageController {
         // for(Package p:pack){
         //     System.out.println("pack = "+p.getPackageName());
         // }
+        System.out.println("got by base location packages");
         model.addAttribute("packages", pack);
         model.addAttribute("baseLocation", baseLocation);
         return "display_package";

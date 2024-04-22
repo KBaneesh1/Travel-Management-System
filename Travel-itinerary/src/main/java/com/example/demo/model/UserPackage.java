@@ -12,7 +12,11 @@ public class UserPackage {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long user_package_id;
 
+    @OneToOne
+    @JoinColumn(name = "user_id")
     private User user;
+    @OneToOne
+    @JoinColumn(name = "package_id")
     private Package pack;
     public Long getUser_package_id() {
         return user_package_id;
