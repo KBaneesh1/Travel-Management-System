@@ -37,13 +37,14 @@ public class PackageController {
     
 
     public PackageController(HotelService hotelService, RoomService roomService, 
-    TransportServiceImpl transportService, PackageRepository packageRepository) {
+    TransportServiceImpl transportService, PackageRepository packageRepository ,UserPackageRepository userPackageRepository) {
         
         super();
         this.hotelService = hotelService;
         this.roomService = roomService;
         this.transportService = transportService;
         this.packageRepository = packageRepository;
+        this.userPackageRepository = userPackageRepository;
     }
 
 
@@ -139,7 +140,7 @@ public class PackageController {
     @GetMapping("/package/{baseLocation}/confirm_package")
     public String addTransportToPackage(@PathVariable("baseLocation") String baseLocation, Model model, 
     @SessionAttribute("package") Package.Builder p) {
-
+        
         Package new_package = p.build();
         packageRepository.save(new_package);
         System.out.println("Transport in this package is: " + p.getTransport().getVehicleName());
@@ -150,6 +151,9 @@ public class PackageController {
     @GetMapping("/display_packages")
     public String dispPack(@SessionAttribute("user") User user)
     {
+        // Syste
+        System.out.println(user.getEmail());
+        // System.out.println();
         return "choose_package";
     }
 
@@ -158,22 +162,38 @@ public class PackageController {
         System.out.println("in display "+baseLocation);
         List<Package> pase = packageRepository.findAll();
         System.out.println("after finall");
+        // System.out.println(pase);
+        // for(Package p:pase){
+        //     System.out.println("Transport :"+p.pac);
+        // }
         List<Package> pack = packageRepository.findByBaseLocation(baseLocation);
         // for(Package p:pack){
         //     System.out.println("pack = "+p.getPackageName());
         // }
-        System.out.println("got by base location packages");
+       
+        
         model.addAttribute("packages", pack);
         model.addAttribute("baseLocation", baseLocation);
         return "display_package";
     }
-    @GetMapping("/display_package/{baseLocation}/{package_id}")
-    public String selectPackage(@SessionAttribute("user") User user,@PathVariable("baseLocation") String baseLocation,@PathVariable("package_id") Long package_id)
+
+    @GetMapping("/display_packages/add_package/{baseLocation}/{packageId}")
+    public String selectPackage(@SessionAttribute("user") User user,@PathVariable("baseLocation") String baseLocation,@PathVariable("packageId") Long packageId)
     {
-        Package pack = packageRepository.findById(package_id).orElse(null);
+        
+        Package pack = packageRepository.findById(packageId).orElse(null);
+        // if(pack==null){
+        //     System.out.println(pack.getPackageId());
+        // }
+        System.out.println(user.getEmail());
         UserPackage userPackage = new UserPackage();
         userPackage.setPack(pack);
         userPackage.setUser(user);
+        System.out.println("got by base location packages");
+       
+            System.out.println("Pakcage :"+pack.getPackageId());
+            System.out.println("name : "+pack.getPackageName());
+        
         userPackageRepository.save(userPackage);
         return "home";
     }

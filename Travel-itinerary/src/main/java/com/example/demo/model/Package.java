@@ -15,7 +15,8 @@ public class Package {
     // there can be many hotels for one package, only one transport
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long package_id;
+    @Column(name = "package_id")
+    private Long packageId;
     private String packageName;
     private String description;
     
@@ -28,6 +29,7 @@ public class Package {
     private List<Hotel> hotels;
 
     @OneToOne
+
     @JoinColumn(name = "transport_id")
     private Transport transport;
     private double price;
@@ -38,6 +40,10 @@ public class Package {
         // hotels = new List<>();
         // apparently this is to avoid direct instantiation
     }
+    public Long getPackageId(){
+        return packageId;
+    }
+   
     public String getPackageName() {
         return this.packageName;
     }
@@ -66,7 +72,7 @@ public class Package {
 
     public static class Builder {
         @GeneratedValue(strategy = GenerationType.IDENTITY)
-        private Long package_id;
+        private Long packageId;
         private String packageName;
         private String description;
         private List<Hotel> hotels = new ArrayList<>();
@@ -78,6 +84,10 @@ public class Package {
             // this.packageName = packageName;
         }
 
+        public Long getPackageId(){
+            return packageId;
+        }
+        
         public Builder setName(String packageName) {
             this.packageName = packageName;
             return this;

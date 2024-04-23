@@ -52,7 +52,7 @@
         
         <!-- Button to choose package -->
         <!-- <button onclick="choosePackage('${package.packageName}')">Choose Package</button> -->
-        <a th:href="@{'/display_packages/' + ${baseLocation} + '/'${package.package_id}}">Select Package</a>
+        <a th:href="@{'/display_packages/add_package/' + ${baseLocation} + '/' + ${package.packageId}}">Select Package</a>
     </div>
 
     <script>

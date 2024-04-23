@@ -48,8 +48,8 @@ public class UserController {
     }
 
     
-    // @GetMapping("/admin/home")
-    // public String adminHome() {
+    // @GetMapping("/manager/home")
+    // public String managerHome() {
     //     return "admin_home";
     // }
     
@@ -69,7 +69,10 @@ public class UserController {
     @PostMapping("/admin/login")
     public String adminLogin(@RequestParam("username") String username, @RequestParam("password") String password, Model model) {
         User user = userRepository.findByUsername(username);
+
         if (user != null && user.getPassword().equals(password) && user.getUserType().equals("ADMIN")) {
+            model.addAttribute("user", user);
+
             return "redirect:/display_package";
         } else {
             return "error_page";
@@ -80,6 +83,8 @@ public class UserController {
     public String providerLogin(@RequestParam("username") String username, @RequestParam("password") String password, Model model) {
         User user = userRepository.findByUsername(username);
         if (user != null && user.getPassword().equals(password) && user.getUserType().equals("PROVIDER")) {
+            model.addAttribute("user", user);
+
             return "provider_home";
         } else {
             return "error_page";
@@ -88,9 +93,12 @@ public class UserController {
 
 
     @PostMapping("/user/login")
-    public String userLogin(@RequestParam("username") String username, @RequestParam("password") String password, Model model) {
+    public String userLogin( @RequestParam("username") String username, @RequestParam("password") String password, Model model) {
         User user = userRepository.findByUsername(username);
+
         if (user != null && user.getPassword().equals(password) && user.getUserType().equals("USER")) {
+                model.addAttribute("user", user);
+
             return "redirect:/display_packages";
         } else {
             return "error_page";

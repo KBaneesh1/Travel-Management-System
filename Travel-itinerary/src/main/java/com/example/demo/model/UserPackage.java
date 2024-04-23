@@ -15,9 +15,17 @@ public class UserPackage {
     @OneToOne
     @JoinColumn(name = "user_id")
     private User user;
+
+    // @ManyToMany
+    // @JoinTable(
+    //     name = "booked", // Name of the join table
+    //     joinColumns = @JoinColumn(name = "user_id"), // Foreign key column in the join table for 'Package' entity
+    //     inverseJoinColumns = @JoinColumn(name = "package_id") // Foreign key column in the join table for 'Hotel' entity
+    // )
     @OneToOne
     @JoinColumn(name = "package_id")
     private Package pack;
+
     public Long getUser_package_id() {
         return user_package_id;
     }
